@@ -6,6 +6,7 @@ canvas.height = 600;
 //Globals
 let frame = 0;
 let gameOver = false;
+const winningScore = 1000;
 const cellGap = 3;
 const cellSize = 100;
 const gameGrid = [];
@@ -14,6 +15,8 @@ let resources = 300;
 let score = 0;
 //
 const projectiles = [];
+const powerUps = [];
+//
 const defenders = [];
 const enemies = [];
 const enemyPos = [];
@@ -83,7 +86,7 @@ class Projectiles {
         this.width = 10;
         this.height = 10;
         this.power = 50;
-        this.speed = 5;
+        this.speed = 10;
     }
     update(){
         this.x += this.speed;
@@ -201,8 +204,8 @@ canvas.addEventListener('click', function(){
 //Enemies
 class Enemy {
     constructor(verticalPosition){
-        this.x = canvas.width + cellGap;
-        this.y = verticalPosition + cellGap;
+        this.x = canvas.width;
+        this.y = verticalPosition;
         this.width = cellSize - cellGap * 2;
         this.height = cellSize - cellGap * 2;
         this.speed = Math.random() * 0.3 + 5;
@@ -246,15 +249,52 @@ function handleEnemies(){
         }
     }
 
+
+    //Spawn enemy
     if (frame % enemyInterval === 0){
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize;
+        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
         enemies.push(new Enemy(verticalPosition));
         enemyPos.push(verticalPosition);
         if (enemyInterval > 120) enemyInterval -= 50;
         console.log(enemyPos);
     }
 }
+
 //Resources
+const popValues = [20, 30, 40];
+class powerUp {
+    constructor(){
+        this.x = Math.random() * (canvas.width - cellSize);
+        this.y = (Math.floor(Math.random() * 5) + 1) * cellSize + 25;
+        this.width = cellSize * 0.6;
+        this.height = cellSize * 0.6;
+        this.amount = popValues[Math.floor(Math.random() * popValues.length)];
+    }
+    draw(){
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillStyle = 'black';
+        ctx.font = '30px Verdana';
+        ctx.fillText(this.amount, this.x + 20, this.y - 10);
+    }
+}
+
+function handlePowerUp(){
+    if (frame % 500 === 0 && score < winningScore){
+        powerUps.push(new powerUp());
+    }
+
+    for(let i = 0; i < powerUps.length; i++){
+        powerUps[i].draw();
+        if (powerUps[i] && mouse.x && mouse.y){
+            if (collision(powerUps[i], mouse)){
+                resources += powerUps[i].amount;
+                powerUps.splice(i, 1);
+                i--;
+            }
+        }
+    }
+}
 
 //Utilities
 function handleGameStatus(){
@@ -270,6 +310,13 @@ function handleGameStatus(){
         ctx.fillText(`Score: ${score}`, 300, 400);
 
     }
+
+    if (score >= winningScore){
+        ctx.fillStyle = 'black';        
+        ctx.font = '60px Roboto Mono';
+        ctx.fillText('You won!', 300, 350);
+        ctx.fillText(`Score: ${score}`, 300, 400);
+    }
 }
 function animate(){
     //
@@ -279,6 +326,7 @@ function animate(){
     
     //Game
     handleGameGrid();
+    handlePowerUp();
     handleDefenders();
     handleProjectiles();
     handleEnemies();
@@ -286,7 +334,7 @@ function animate(){
 
     //End game cycle
     frame++;
-    if (!gameOver){
+    if (!gameOver && score < winningScore){
             requestAnimationFrame(animate);
     }
 }
@@ -303,3 +351,7 @@ function collision(first, second){
 
     return collided;
 }
+
+windows.addEventListener('resize', function(){
+    canvasPosition = canvas.getBoundingClientRect();
+});
