@@ -1,4 +1,5 @@
 import { Projectiles, handleProjectiles } from "./projectiles.js";
+import { Defender, handleDefenders } from "./defenders.js";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -80,112 +81,6 @@ function handleGameGrid(){
     }
 }
 
-//Projectiles
-// class Projectiles {
-//     constructor(x, y){
-//         this.x = x;
-//         this.y = y;
-//         this.width = 10;
-//         this.height = 10;
-//         this.power = 50;
-//         this.speed = 10;
-//     }
-//     update(){
-//         this.x += this.speed;
-//     }
-//     draw(){
-//         ctx.fillStyle = 'black';
-//         ctx.beginPath();
-//         ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
-//         ctx.fill(); 
-//     }
-// }
-// function handleProjectiles(){
-//     for (let i = 0; i < projectiles.length; i++){
-        
-//         projectiles[i].update();
-//         projectiles[i].draw();
-
-//         for (let j = 0; j < enemies.length; j++){
-//             if (projectiles[i] && enemies[j]){
-//                 if (collision(projectiles[i], enemies[j])){
-//                     enemies[j].health -= projectiles[i].power;
-//                     projectiles.splice(i, 1);
-//                     i--;
-//                 }
-//             }
-//         }
-
-//         if (projectiles[i] && projectiles[i].x > canvas.width){
-//             projectiles.splice(i, 1);
-//             i--;
-//         }
-//     }
-// }
-
-//Defenders
-class Defender {
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
-        this.width = cellSize - cellGap * 2;
-        this.height = cellSize - cellGap * 2;
-        this.shooting = false;
-        this.health = 100;
-        this.projectiles = [];
-        this.timer = 0;
-    }
-
-    draw(){
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'gray';
-        ctx.font = '30px Verdana';
-        ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
-    }
-    
-    update(){
-        if (!this.shooting){
-            this.timer = 0;
-            return;
-        } 
-
-        
-        if (this.timer % 100 === 0){
-            projectiles.push(new Projectiles(ctx, this.x + 70, this.y + 50));
-        }
-
-        this.timer++;
-    }
-}
-
-function handleDefenders(){
-    for (let i = 0; i < defenders.length; i++){
-        defenders[i].update();
-        defenders[i].draw();
-
-        if (enemyPos.indexOf(defenders[i].y) !== -1){
-            defenders[i].shooting = true;
-        } else{
-            defenders[i].shooting = false;
-        }
-
-        //Check collision
-        for (let j = 0; j < enemies.length; j++){
-            if (defenders[i] && collision(defenders[i], enemies[j])){
-                enemies[j].movement = 0;
-                defenders[i].health -= 0.2;
-            }
-            if (defenders[i] && defenders[i].health <= 0){
-                defenders.splice(i, 1);
-                i--;
-                
-                enemies[j].movement = enemies[j].speed;
-            }
-        }
-    }
-}
-
 //Add defender
 canvas.addEventListener('click', function(){
     const gridPositionX = mouse.x - (mouse.x % cellSize) + cellGap;
@@ -198,7 +93,7 @@ canvas.addEventListener('click', function(){
 
     let defenderCost = 100;
     if (resources >= defenderCost){
-        defenders.push(new Defender(gridPositionX, gridPositionY));
+        defenders.push(new Defender(ctx, gridPositionX, gridPositionY, cellSize - cellGap * 2, cellSize - cellGap * 2));
         resources -= defenderCost;
     }
 });
@@ -330,7 +225,7 @@ function animate(){
     //Game
     handleGameGrid();
     handlePowerUp();
-    handleDefenders();
+    handleDefenders(defenders, enemies, enemyPos, projectiles, collision);
     handleProjectiles(projectiles, enemies, collision);
     handleEnemies();
     handleGameStatus();
