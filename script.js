@@ -1,3 +1,5 @@
+import { Projectiles, handleProjectiles } from "./projectiles.js";
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
@@ -79,47 +81,47 @@ function handleGameGrid(){
 }
 
 //Projectiles
-class Projectiles {
-    constructor(x, y){
-        this.x = x;
-        this.y = y;
-        this.width = 10;
-        this.height = 10;
-        this.power = 50;
-        this.speed = 10;
-    }
-    update(){
-        this.x += this.speed;
-    }
-    draw(){
-        ctx.fillStyle = 'black';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
-        ctx.fill(); 
-    }
-}
-function handleProjectiles(){
-    for (let i = 0; i < projectiles.length; i++){
+// class Projectiles {
+//     constructor(x, y){
+//         this.x = x;
+//         this.y = y;
+//         this.width = 10;
+//         this.height = 10;
+//         this.power = 50;
+//         this.speed = 10;
+//     }
+//     update(){
+//         this.x += this.speed;
+//     }
+//     draw(){
+//         ctx.fillStyle = 'black';
+//         ctx.beginPath();
+//         ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
+//         ctx.fill(); 
+//     }
+// }
+// function handleProjectiles(){
+//     for (let i = 0; i < projectiles.length; i++){
         
-        projectiles[i].update();
-        projectiles[i].draw();
+//         projectiles[i].update();
+//         projectiles[i].draw();
 
-        for (let j = 0; j < enemies.length; j++){
-            if (projectiles[i] && enemies[j]){
-                if (collision(projectiles[i], enemies[j])){
-                    enemies[j].health -= projectiles[i].power;
-                    projectiles.splice(i, 1);
-                    i--;
-                }
-            }
-        }
+//         for (let j = 0; j < enemies.length; j++){
+//             if (projectiles[i] && enemies[j]){
+//                 if (collision(projectiles[i], enemies[j])){
+//                     enemies[j].health -= projectiles[i].power;
+//                     projectiles.splice(i, 1);
+//                     i--;
+//                 }
+//             }
+//         }
 
-        if (projectiles[i] && projectiles[i].x > canvas.width){
-            projectiles.splice(i, 1);
-            i--;
-        }
-    }
-}
+//         if (projectiles[i] && projectiles[i].x > canvas.width){
+//             projectiles.splice(i, 1);
+//             i--;
+//         }
+//     }
+// }
 
 //Defenders
 class Defender {
@@ -150,7 +152,7 @@ class Defender {
 
         
         if (this.timer % 100 === 0){
-            projectiles.push(new Projectiles(this.x + 70, this.y + 50));
+            projectiles.push(new Projectiles(ctx, this.x + 70, this.y + 50));
         }
 
         this.timer++;
@@ -321,6 +323,7 @@ function handleGameStatus(){
 function animate(){
     //
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //
     ctx.fillStyle = 'blue';
     ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
     
@@ -328,7 +331,7 @@ function animate(){
     handleGameGrid();
     handlePowerUp();
     handleDefenders();
-    handleProjectiles();
+    handleProjectiles(projectiles, enemies, collision);
     handleEnemies();
     handleGameStatus();
 
@@ -352,6 +355,6 @@ function collision(first, second){
     return collided;
 }
 
-windows.addEventListener('resize', function(){
+window.addEventListener('resize', function(){
     canvasPosition = canvas.getBoundingClientRect();
 });
