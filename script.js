@@ -1,5 +1,6 @@
-import { Projectiles, handleProjectiles } from "./projectiles.js";
-import { Defender, handleDefenders } from "./defenders.js";
+import { handleProjectiles } from "./projectiles.js";
+import { Defender, handleDefenders } from "./defender.js";
+import { handleEnemies } from "./enemy.js";
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -98,64 +99,64 @@ canvas.addEventListener('click', function(){
     }
 });
 
-//Enemies
-class Enemy {
-    constructor(verticalPosition){
-        this.x = canvas.width;
-        this.y = verticalPosition;
-        this.width = cellSize - cellGap * 2;
-        this.height = cellSize - cellGap * 2;
-        this.speed = Math.random() * 0.3 + 5;
-        this.movement = this.speed;
-        this.health = 100;
-        this.maxHealth = this.health;
-    }
-    update(){
-        this.x -= this.movement;
-    }
-    draw(){
-        ctx.fillStyle = 'red';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'black';
-        ctx.font = '30px Verdana';
-        ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
+// //Enemies
+// class Enemy {
+//     constructor(verticalPosition){
+//         this.x = canvas.width;
+//         this.y = verticalPosition;
+//         this.width = cellSize - cellGap * 2;
+//         this.height = cellSize - cellGap * 2;
+//         this.speed = Math.random() * 0.3 + 5;
+//         this.movement = this.speed;
+//         this.health = 100;
+//         this.maxHealth = this.health;
+//     }
+//     update(){
+//         this.x -= this.movement;
+//     }
+//     draw(){
+//         ctx.fillStyle = 'red';
+//         ctx.fillRect(this.x, this.y, this.width, this.height);
+//         ctx.fillStyle = 'black';
+//         ctx.font = '30px Verdana';
+//         ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
     
-    }
-}
+//     }
+// }
 
-function handleEnemies(){
-    for(let i = 0; i < enemies.length; i++){
-        enemies[i].update();
-        enemies[i].draw();
+// function handleEnemies(){
+//     for(let i = 0; i < enemies.length; i++){
+//         enemies[i].update();
+//         enemies[i].draw();
 
         
-        if (enemies[i].health <= 0){
-            let gainedResource = enemies[i].maxHealth/5;
-            resources += gainedResource;
-            score += gainedResource;
-            const findIndex = enemyPos.indexOf(enemies[i].y);
-            enemyPos.splice(findIndex, 1);
-            enemies.splice(i, 1);
-            i--;
-            console.log(enemyPos);
-            return;
-        }
+//         if (enemies[i].health <= 0){
+//             let gainedResource = enemies[i].maxHealth/5;
+//             resources += gainedResource;
+//             score += gainedResource;
+//             const findIndex = enemyPos.indexOf(enemies[i].y);
+//             enemyPos.splice(findIndex, 1);
+//             enemies.splice(i, 1);
+//             i--;
+//             console.log(enemyPos);
+//             return;
+//         }
 
-        if (enemies[i].x < 0){
-            gameOver = true;
-        }
-    }
+//         if (enemies[i].x < 0){
+//             gameOver = true;
+//         }
+//     }
 
 
-    //Spawn enemy
-    if (frame % enemyInterval === 0){
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
-        enemies.push(new Enemy(verticalPosition));
-        enemyPos.push(verticalPosition);
-        if (enemyInterval > 120) enemyInterval -= 50;
-        console.log(enemyPos);
-    }
-}
+//     //Spawn enemy
+//     if (frame % enemyInterval === 0){
+//         let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize + cellGap;
+//         enemies.push(new Enemy(verticalPosition));
+//         enemyPos.push(verticalPosition);
+//         if (enemyInterval > 120) enemyInterval -= 50;
+//         console.log(enemyPos);
+//     }
+// }
 
 //Resources
 const popValues = [20, 30, 40];
@@ -227,7 +228,7 @@ function animate(){
     handlePowerUp();
     handleDefenders(defenders, enemies, enemyPos, projectiles, collision);
     handleProjectiles(projectiles, enemies, collision);
-    handleEnemies();
+    handleEnemies(ctx, frame, enemyInterval, enemies, enemyPos, resources, score, gameOver);
     handleGameStatus();
 
     //End game cycle
