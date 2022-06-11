@@ -90,8 +90,8 @@ class Defender {
     draw(){
         ctx.fillStyle = 'blue';
         ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'gold';
-        ctx.font = '30px Arial';
+        ctx.fillStyle = 'gray';
+        ctx.font = '30px Verdana';
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
     }
 }
@@ -125,7 +125,7 @@ class Enemy {
         this.y = verticalPosition;
         this.width = cellSize;
         this.height = cellSize;
-        this.speed = Math.random() * 0.3 + 0.8;
+        this.speed = Math.random() * 0.3 + 3.8;
         this.movement = this.speed;
         this.health = 100;
         this.maxHealth = this.health;
@@ -136,8 +136,8 @@ class Enemy {
     draw(){
         ctx.fillStyle = 'red';
         ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = 'gold';
-        ctx.font = '30px Arial';
+        ctx.fillStyle = 'black';
+        ctx.font = '30px Verdana';
         ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
     
     }
@@ -157,6 +157,7 @@ function handleEnemies(){
         let verticalPosition = Math.floor(Math.random() * 5 + 1) * cellSize;
         enemies.push(new Enemy(verticalPosition));
         enemyPos.push(verticalPosition);
+        if (enemyInterval > 120) enemyInterval -= 50;
     }
 }
 //Resources
@@ -168,9 +169,9 @@ function handleGameStatus(){
     ctx.fillText(`Resources: ${resources}`, 20, 40);
 
     if (gameOver){
-        ctx.fillStyle = 'black';
-        ctx.font = '60px Arial';
-        ctx.fillText('Game Over', 135, 230);
+        ctx.fillStyle = 'black';        
+        ctx.font = '60px Roboto Mono';
+        ctx.fillText('Game Over', 300, 350);
 
     }
 }
