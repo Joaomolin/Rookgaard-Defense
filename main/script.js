@@ -1,6 +1,6 @@
-import { handleProjectiles } from "./projectiles.js";
-import { Defender, handleDefenders } from "./defender.js";
-import { handleEnemies } from "./enemy.js";
+import { handleProjectiles } from "./objects/projectiles.js";
+import { Defender, handleDefenders } from "./objects/defender.js";
+import { handleEnemies } from "./objects/enemy.js";
 import { Globals, Resources } from "./globals.js";
 
 const canvas = document.getElementById('canvas');

@@ -1,4 +1,4 @@
-import { Globals, Resources } from "./globals.js";
+import { Globals, Resources } from "../globals.js";
 
 export class Enemy {
     constructor(ctx, verticalPosition){
