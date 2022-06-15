@@ -1,3 +1,6 @@
+import { Sprite } from "../sprite.js";
+import { Globals } from "../globals.js";
+
 export class Projectile {
     constructor(ctx, x, y){
         this.ctx = ctx
@@ -7,6 +10,8 @@ export class Projectile {
         this.height = 10;
         this.power = 50;
         this.speed = 10;
+
+        this.sprite = new Sprite(10);
     }
     update(){
         this.x += this.speed;
@@ -14,8 +19,10 @@ export class Projectile {
     draw(){
         this.ctx.fillStyle = 'black';
         this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
+        //this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
         this.ctx.fill(); 
+
+        this.sprite.draw(this.ctx, this.x - Globals.cellSize / 2, this.y - Globals.cellSize / 2, Globals.cellSize, Globals.cellSize);
     }
 }
 

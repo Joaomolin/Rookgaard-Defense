@@ -1,4 +1,5 @@
 import { Projectile } from "./projectile.js";
+import { Sprite } from "../sprite.js";
 
 export class Defender {
     constructor(ctx, x, y, width, height){
@@ -9,20 +10,33 @@ export class Defender {
         this.width = width;
         this.height = height;
         this.shooting = false;
-        this.health = 10000;
+        this.health = 100;
         this.projectiles = [];
         this.timer = 0;
+
+        this.sprite = new Sprite(11);
     }
 
     draw(){
+        this.ctx.globalAlpha = 0.2;
         this.ctx.fillStyle = 'blue';
-        this.ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.ctx.fillStyle = 'gray';
+        this.ctx.globalAlpha = 1;
+        this.ctx.fillStyle = 'black';
         this.ctx.font = '30px Verdana';
-        this.ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
+        this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
+
+        
+        this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
     }
     
-    update(projectiles){
+    update(projectiles, frame){
+        if (frame % this.sprite.spriteSpeed === 0){
+            if (this.sprite.frameX < this.sprite.maxFrame){
+                this.sprite.frameX++;
+            } else {
+                this.sprite.frameX = this.sprite.minFrame;
+            }
+        }
         
         if (!this.shooting){
             this.timer = 0;
@@ -36,21 +50,22 @@ export class Defender {
         }
 
         this.timer++;
+        
     }
 }
 
-export function handleDefenders(defenders, enemies, enemyPos, projectiles, collision){
+export function handleDefenders(defenders, enemies, enemyPos, projectiles, frame, collision){
     
     for (let i = 0; i < defenders.length; i++){
         
-        defenders[i].update(projectiles);
+        defenders[i].update(projectiles, frame);
         defenders[i].draw();
        
 
         if (enemyPos.indexOf(defenders[i].y) !== -1){
             defenders[i].shooting = true;
         } else{
-            defenders[i].shooting = false;
+            defenders[i].shooting = true;
         }
 
         //Check collision

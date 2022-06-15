@@ -13,8 +13,6 @@ export class Mouse {
         this.canvasPosition = this.canvas.getBoundingClientRect();
     }
     
-    
-    
 }
 
 let uniqueMouse;

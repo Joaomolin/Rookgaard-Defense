@@ -128,7 +128,7 @@ function animate(){
     //Game
     handleGameGrid();
     handlePowerUp(ctx, canvas, frame, mouse, floatingMessages, collision);
-    handleDefenders(defenders, enemies, enemyPos, projectiles, collision);
+    handleDefenders(defenders, enemies, enemyPos, projectiles, frame, collision);
     handleProjectiles(projectiles, enemies, collision);
     handleEnemies(ctx, frame, enemies, enemyPos);
     handleGameStatus();
