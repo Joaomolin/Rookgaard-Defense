@@ -28,10 +28,13 @@ const enemyPos = [];
 
 
 
+
+const bg = new Image();
+bg.src = "assets/bghorizontal.png";
 //Board
 const controlsBar = {
     width: canvas.width,
-    height: Globals.cellSize
+    height: 130,
 };
 
 class Cell {
@@ -104,7 +107,7 @@ function handleGameStatus(){
 
     if (Globals.gameOver){
         ctx.fillStyle = 'black';        
-        ctx.font = '60px Roboto Mono';
+        ctx.font = '60px Tahoma';
         ctx.fillText('Game Over', 300, 350);
         ctx.fillText(`Score: ${Resources.score}`, 300, 400);
 
@@ -122,15 +125,25 @@ function animate(){
     //
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
+    //ctx.fillStyle = 'blue';
+    //ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
+    ctx.drawImage(  bg, 
+                    0, 
+                    0, 
+                    900, 
+                    100, 
+                    0, 
+                    0, 
+                    controlsBar.width, 
+                    controlsBar.height);
+    
     
     //Game
     handleGameGrid();
-    handlePowerUp(ctx, canvas, frame, mouse, floatingMessages, collision);
     handleDefenders(defenders, enemies, enemyPos, projectiles, frame, collision);
     handleProjectiles(projectiles, enemies, collision);
     handleEnemies(ctx, frame, enemies, enemyPos);
+    handlePowerUp(ctx, canvas, frame, mouse, floatingMessages, collision);
     handleGameStatus();
     handleFloatingMessages();
 

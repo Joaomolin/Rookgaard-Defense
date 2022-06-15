@@ -16,7 +16,7 @@ export class Enemy {
         this.maxHealth = this.health;
 
         //newSPrite
-        this.sprite = new Sprite(0);
+        this.sprite = new Sprite(5);
     }
 
     update(frame){

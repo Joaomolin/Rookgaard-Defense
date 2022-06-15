@@ -1,4 +1,5 @@
 import { Globals, Resources } from "../globals.js";
+import { Sprite } from "../sprite.js";
 import { FloatingMessage } from "./floatingMessage.js";
 
 const powerUps = [];
@@ -9,16 +10,13 @@ export class PowerUp {
         this.ctx = ctx;
         this.x = Math.random() * (canvas.width - Globals.cellSize);
         this.y = (Math.floor(Math.random() * 5) + 1) * Globals.cellSize + 25;
-        this.width = Globals.cellSize * 0.6;
-        this.height = Globals.cellSize * 0.6;
+        this.width = 50;
+        this.height = 50;
         this.amount = popValues[Math.floor(Math.random() * popValues.length)];
+        this.sprite = new Sprite(4);
     }
     draw(){
-        this.ctx.fillStyle = 'yellow';
-        this.ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.ctx.fillStyle = 'black';
-        this.ctx.font = '30px Verdana';
-        this.ctx.fillText(this.amount, this.x + 20, this.y - 10);
+        this.sprite.draw(this.ctx, this.x - 10, this.y - 10, this.width + 25, this.height + 25);
     }
 }
 
