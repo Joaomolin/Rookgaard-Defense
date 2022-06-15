@@ -1,7 +1,10 @@
 import { Globals, Resources } from "../globals.js";
+import { Sprite } from "../sprite.js";
 
 export class Enemy {
     constructor(ctx, verticalPosition){
+
+        //Enemy
         this.ctx = ctx;
         this.x = canvas.width;
         this.y = verticalPosition;
@@ -9,44 +12,48 @@ export class Enemy {
         this.height = Globals.cellSize - Globals.cellGap * 2;
         this.speed = Math.random() * 0.3 + 5;
         this.movement = this.speed;
-        this.health = 10000;
+        this.health = 100;
         this.maxHealth = this.health;
-        const enemy1 = new Image();
-        enemy1.src = "OrcInimigo.png";
-        this.type = enemy1;
-        this.frameX = 0;
-        this.frameY = 0;
-        this.minFrame = 0;
-        this.maxFrame = 1;
-        this.spriteWidth = 34;
-        this.spriteHeight = 34;
+
+        //newSPrite
+        this.sprite = new Sprite(0);
     }
 
     update(frame){
         this.x -= this.movement;
         
-        if (frame % 20 === 0){
-            if (this.frameX < this.maxFrame){
-                this.frameX++;
+        if (frame % this.sprite.spriteSpeed === 0){
+            if (this.sprite.frameX < this.sprite.maxFrame){
+                this.sprite.frameX++;
             } else {
-                this.frameX = this.minFrame;
+                this.sprite.frameX = this.sprite.minFrame;
             }
         }
     }
 
     draw(){
+        this.ctx.globalAlpha = 0.2;
         this.ctx.fillStyle = 'red';
         //this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.ctx.globalAlpha = 1;
         this.ctx.fillStyle = 'black';
         this.ctx.font = '30px Verdana';
-        //this.ctx.fillText(Math.floor(this.health), this.x + 20, this.y + 30);
+        this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
     
         //this.ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
-        this.ctx.drawImage(this.type, this.frameX * this.spriteWidth, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
+        this.ctx.drawImage( this.sprite.type, 
+                            this.sprite.frameX * this.sprite.spriteWidth, 
+                            this.sprite.frameY * this.sprite.spriteHeight, 
+                            this.sprite.spriteWidth, 
+                            this.sprite.spriteHeight, 
+                            this.x, 
+                            this.y, 
+                            this.width, 
+                            this.height);
     }
 }
 
-export function handleEnemies(ctx, frame, enemyInterval, enemies, enemyPos){
+export function handleEnemies(ctx, frame, enemies, enemyPos){
     for(let i = 0; i < enemies.length; i++){
         enemies[i].update(frame);
         enemies[i].draw();
@@ -70,13 +77,11 @@ export function handleEnemies(ctx, frame, enemyInterval, enemies, enemyPos){
     }
     
 
-    console.log(`handleEnemies! ${enemies.length} / ${enemyPos.length}`);
     //Spawn enemy
-    if (frame % enemyInterval === 0){
+    if (frame % Globals.enemyInterval === 0){
         let verticalPosition = Math.floor(Math.random() * 5 + 1) * Globals.cellSize + Globals.cellGap
         enemies.push(new Enemy(ctx, verticalPosition));
         enemyPos.push(verticalPosition);
-        console.log(`Created new enemy! ${enemies.length} / ${enemyPos.length}`)
-        if (enemyInterval > 120) enemyInterval -= 50;
+        if (Globals.enemyInterval > 120) Globals.enemyInterval -= 50;
     }
 }

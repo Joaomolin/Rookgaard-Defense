@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .canvas {
+            margin-right: 5px;
+            width: 80px;
+            height: 80px;
+
+            border: black solid 3px;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            background: grey;
+
+        }
+        .btn {
+            margin: 2px;
+        }
+        .buttonsDiv {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="buttonsDiv" id="buttons">
+        <input class="btn" type="text" id ="dlInput"></input>
+        <button class="btn" onclick="dlCanvas2()">Download</button>
+        <button class="btn" onclick="loadLastPage()">Last page</button>
+        <button class="btn" onclick="gotoPage()">Goto page</button>
+        <button class="btn" onclick="loadNextPage()">Next page</button>
+        <button class="btn" onclick="startBasicAnimation()">Start</button>
+        <button class="btn" onclick="clearInterval(timerInterval)">Stop</button>
+        <input class="btn" id="file-input" type="file">
+    </div>
+
+    <div id="multiContainer"></div>
+
+    <!-- main script -->
+    <script>
+        //
+        let timerInterval = null;
+        const limit = 95;
+        const downloadInput = document.getElementById('dlInput');
+        const fileInput = document.getElementById('file-input');
+        const container = document.getElementById("multiContainer");
+        container.style.maxWidth = "1500px";
+        //
+        const downloadCanvas = createDownloadCanvas();
+        container.appendChild(downloadCanvas);
+        for (let i = 0; i < limit; ++i) {
+            container.appendChild(createCanvas(i));
+        }
+        //
+        
+        let fileContent = null;
+        let r = null;
+        let ctx = null;
+        let auxId = 1;
+        
+        
+        function createDownloadCanvas(){
+            let box = document.createElement("canvas");
+            
+            box.width = "32";
+            box.height = "32";
+            box.classList.add("canvas");
+            box.id = "downloadCanvas";
+            box.style.background = 'pink';
+
+            return box;    
+        }
+        
+
+        function createCanvas(i){
+            let box = document.createElement("canvas");
+            
+            box.width = "32";
+            box.height = "32";
+            box.classList.add("canvas");
+            box.id = "canvas" + i;
+
+            return box;    
+        }
+
+        class CustomReader {
+
+            constructor(data) {
+                this.data = data;
+            }
+
+            read1Byte(from) {
+                const d = this.data;
+                if (from < d.length) {
+                    return (d[from] & 0xff);
+                } else {
+                    return 0;
+                }
+            }
+
+            read2Bytes(from) {
+                const d = this.data;
+                if (from + 2 < d.length) {
+                    return (d[from + 0] & 0xff) |
+                        ((d[from + 1] & 0xff) << 8);
+                } else {
+                    return 0;
+                }
+            }
+
+            read4Bytes(from) {
+                const d = this.data;
+                if (from + 4 < d.length) {
+                    return ((d[from + 0] & 0xff) |
+                        ((d[from + 1] & 0xff) << 8) |
+                        ((d[from + 2] & 0xff) << 16) | 
+                        ((d[from + 3] & 0xff) << 24)) & 0xffffffff;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        fileInput.onchange = function () {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const { result } = reader;
+                fileContent = new Int8Array(new DataView(result).buffer);
+                r = new CustomReader(fileContent);
+
+                //chamada da funcao de desenho aqui
+                //startBasicAnimation();
+                loadNextPage();
+            }
+            reader.readAsArrayBuffer(this.files[0]);
+        }
+
+       function startBasicAnimation() {
+            loadNextPage(); 
+            timerInterval = setInterval(() => {
+            
+                loadNextPage();                
+                
+            }, 2000);
+        }
+
+        function gotoPage(){
+            auxId = Math.floor(downloadInput.value / limit) * limit + 1;
+            loadNextPage();
+        }
+
+        function loadLastPage(){
+            auxId -= limit * 2;
+            loadNextPage();
+        }
+
+        function loadNextPage(){
+            console.log(`Drawing from: ${auxId} to ${auxId + limit}`);
+            downloadInput.value = auxId;
+
+            for (let i = 0; i < limit; i++){
+                ctx = document.getElementById(`canvas${i}`).getContext('2d');
+                loadAndDrawSprite(auxId++);
+            }
+
+            
+        }
+
+        function loadAndDrawSprite(id, removeIdx) {
+            //console.log('Drawing: ' + id);
+
+            //limpar o desenho antigo antes de fazer outro
+            ctx.clearRect(0, 0, 32, 32);
+
+            const address = r.read4Bytes(6 + (4 * id));
+
+            const begin = address + 3;
+            const numBytes = r.read2Bytes(begin);
+            const endByte = begin + numBytes;
+
+            let currentByte = begin + 2;
+            let pixelCounter = 0;
+
+            // -----------------
+
+            while (currentByte < endByte) { 
+                const transparentPixels = r.read2Bytes(currentByte);
+                currentByte += 2;
+
+                const coloredPixels = r.read2Bytes(currentByte);
+                currentByte += 2;
+
+                pixelCounter += transparentPixels;
+                for (let i = 0; i < coloredPixels; i++, pixelCounter++) {
+                    const currentPixelInfo = {
+                        x: parseInt(pixelCounter % 32),
+                        y: parseInt(pixelCounter / 32),
+                        red: r.read1Byte(currentByte++),
+                        green: r.read1Byte(currentByte++),
+                        blue: r.read1Byte(currentByte++),
+                        alpha: 255
+                    };
+
+                    drawPixel(currentPixelInfo);
+                }
+            }
+
+            if (!removeIdx){
+                ctx.fillStyle = 'black';
+                ctx.fillText(id, 2, 30);
+            }
+            
+        }
+
+        function drawPixel(info) {
+            // usando contexto do canvas aqui
+            ctx.fillStyle = `rgba(${info.red}, ${info.green}, ${info.blue}, ${info.alpha})`;
+            ctx.fillRect(info.x, info.y, 1, 1); // retangulo 1 x 1
+        }
+
+        function dlCanvas2() {
+            ctx = document.getElementById('downloadCanvas').getContext('2d');
+            loadAndDrawSprite(downloadInput.value, true);
+            //
+            const link = document.createElement('a');
+            link.download = downloadInput.value + '.png';
+            
+            const cvIndex = downloadInput.value % limit;
+            link.href = downloadCanvas.toDataURL();
+            link.click();
+        }
+
+        function dlCanvas() {
+            
+            const link = document.createElement('a');
+            link.download = downloadInput.value + '.png';
+            
+            const cvIndex = downloadInput.value % limit;
+            link.href = document.getElementById(`canvas${cvIndex}`).toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+
+</html>
+

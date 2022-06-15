@@ -5,6 +5,8 @@ import { Globals, Resources } from "./globals.js";
 import { handlePowerUp } from "./objects/powerUp.js"
 import { Mouse } from "./mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
+import { Sprite } from "./sprite.js";
+
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -24,6 +26,8 @@ const enemies = [];
 const enemyTypes = [];
 const enemyPos = [];
 
+
+
 //Board
 const controlsBar = {
     width: canvas.width,
@@ -32,18 +36,35 @@ const controlsBar = {
 
 class Cell {
     constructor(x, y){
+        
         this.x = x;
         this.y = y;
         this.width = Globals.cellSize;
         this.height = Globals.cellSize;
+
+        this.sprite = new Sprite(2);
     }
 
     draw(){
+        this.drawBackground();
+
         if (mouse.x && mouse.y && collision(this, mouse)){
             ctx.strokeStyle = 'black';
             ctx.strokeRect(this.x, this.y, this.width, this.height);
         }
         
+    }
+
+    drawBackground(){
+        ctx.drawImage( this.sprite.type, 
+            this.sprite.frameX * this.sprite.spriteWidth, 
+            this.sprite.frameY * this.sprite.spriteHeight, 
+            this.sprite.spriteWidth - 2, 
+            this.sprite.spriteHeight - 2, 
+            this.x, 
+            this.y, 
+            this.width, 
+            this.height);
     }
 }
 
@@ -109,7 +130,7 @@ function animate(){
     handlePowerUp(ctx, canvas, frame, mouse, floatingMessages, collision);
     handleDefenders(defenders, enemies, enemyPos, projectiles, collision);
     handleProjectiles(projectiles, enemies, collision);
-    handleEnemies(ctx, frame, Globals.enemyInterval, enemies, enemyPos);
+    handleEnemies(ctx, frame, enemies, enemyPos);
     handleGameStatus();
     handleFloatingMessages();
 
