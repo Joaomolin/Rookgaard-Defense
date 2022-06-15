@@ -8,8 +8,8 @@ export class Projectile {
         this.y = y;
         this.width = 10;
         this.height = 10;
-        this.power = 50;
-        this.speed = 10;
+        this.power = 20;
+        this.speed = 15;
 
         this.sprite = new Sprite(10);
     }

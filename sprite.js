@@ -1,5 +1,5 @@
 export class Sprite {
-    constructor(spriteId){
+    constructor(spriteId, isSpawn){
         
         this.frameX = 0;
         this.frameY = 0;
@@ -9,8 +9,20 @@ export class Sprite {
         this.spriteHeight = 34;
         this.spriteSpeed = 20 + addRandomSpeed();
         this.type = getSprite(spriteId, this);
+        this.isSpawn = isSpawn;
         
     }    
+    update(frame){
+        if (frame % this.spriteSpeed === 0){
+            if (this.frameX < this.maxFrame){
+                this.frameX++;
+            } else {
+                if (!this.isSpawn){
+                    this.frameX = this.minFrame;
+                }
+            }
+        }
+    }
 
     draw(ctx, x, y, width, height){
         ctx.drawImage(  this.type, 
@@ -36,14 +48,6 @@ function addRandomSpeed(){
 function getSprite(i, self){
     const sprite = new Image();
     switch(i){
-        case 1:
-            sprite.src = "assets/SlimeInimigo.png";
-            self.spriteWidth = 66;
-            self.spriteHeight = 66;
-            self.maxFrame = 7;
-            self.spriteSpeed = 5 + addRandomSpeed();
-            
-        break;
         case 2:
             sprite.src = "assets/Ground1.png";
         break;
@@ -53,19 +57,32 @@ function getSprite(i, self){
         case 4:
             sprite.src = "assets/queijo.png";
         break;
-        case 5:
-            sprite.src = "assets/cobra.png";
-            self.maxFrame = 1;
-        break;
         case 6:
             sprite.src = "assets/teleport.png";
-            self.maxFrame = 7;
-            self.spriteSpeed = 5
+            self.maxFrame = 8;
+            self.spriteSpeed = 4;
         break;
         case 10:
             sprite.src = "assets/Arrow.png";
         break;
-        case 11:
+        
+        case 100:
+            sprite.src = "assets/OrcInimigo.png";
+            self.maxFrame = 1;
+        break;
+        case 101:
+            sprite.src = "assets/cobra.png";
+            self.maxFrame = 1;
+        break;
+        case 102:
+            sprite.src = "assets/SlimeInimigo.png";
+            self.spriteWidth = 66;
+            self.spriteHeight = 66;
+            self.maxFrame = 7;
+            self.spriteSpeed = 5 + addRandomSpeed();
+        break;
+
+        case 200:
             sprite.src = "assets/MinoArcher.png";
             self.maxFrame = 1;
             self.spriteSpeed = 50 + addRandomSpeed();

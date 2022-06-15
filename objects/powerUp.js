@@ -29,7 +29,7 @@ export function handlePowerUp(ctx, canvas, frame, mouse, floatingMessages, colli
         powerUps[i].draw();
         if (powerUps[i] && mouse.x && mouse.y){
             if (collision(powerUps[i], mouse)){
-                floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, '+' + powerUps[i].amount, 40, 'gold'));
+                floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, '+' + powerUps[i].amount, 40, 'black'));
                 Resources.wallet += powerUps[i].amount;
                 powerUps.splice(i, 1);
                 i--;

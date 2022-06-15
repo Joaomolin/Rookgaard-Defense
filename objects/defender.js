@@ -14,7 +14,8 @@ export class Defender {
         this.projectiles = [];
         this.timer = 0;
 
-        this.sprite = new Sprite(11);
+        this.spawnSprite = new Sprite(6, true);
+        this.sprite = new Sprite(200);
     }
 
     draw(){
@@ -27,24 +28,20 @@ export class Defender {
 
         
         this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
+        this.spawnSprite.draw(this.ctx, this.x, this.y, this.width, this.height);
     }
     
     update(projectiles, frame){
-        if (frame % this.sprite.spriteSpeed === 0){
-            if (this.sprite.frameX < this.sprite.maxFrame){
-                this.sprite.frameX++;
-            } else {
-                this.sprite.frameX = this.sprite.minFrame;
-            }
-        }
+        this.spawnSprite.update(frame);
         
         if (!this.shooting){
             this.timer = 0;
             return;
         } 
 
+        this.sprite.update(frame);
         
-        if (this.timer % 100 === 0){
+        if (this.timer % 80 === 0){
             
             projectiles.push(new Projectile(this.ctx, this.x + 70, this.y + 50));
         }
@@ -65,7 +62,7 @@ export function handleDefenders(defenders, enemies, enemyPos, projectiles, frame
         if (enemyPos.indexOf(defenders[i].y) !== -1){
             defenders[i].shooting = true;
         } else{
-            defenders[i].shooting = true;
+            defenders[i].shooting = false;
         }
 
         //Check collision
