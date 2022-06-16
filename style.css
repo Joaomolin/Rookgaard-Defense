@@ -1,14 +1,45 @@
-body {
-    background: gray;
+* {
+    font-family: 'Roboto Mono', monospace;
 }
 
-#canvas {
+body {
+    background-image: url("/assets/GrayBackground.png");
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.mainCanvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 900px;
     height: 600px;
-    background: white;
-    font-family: 'Roboto Mono', monospace;
+
+    
+    border-top: 3px solid #737373;
+    border-left: 3px solid #737373;
+    border-right: 3px solid #282828;
+    border-bottom: 3px solid #282828;
+    
+}
+
+.inventoryCanvas {
+    background-image: url("/assets/InventoryBackground.png");/*127px, 155px;*/
+
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    
+    width:  254px;
+    height: 310px;
+    background-size: 100%;
+    
+}
+
+.tibiaBorder{
+    border-top: 3px solid #737373;
+    border-left: 3px solid #737373;
+    border-right: 3px solid #282828;
+    border-bottom: 3px solid #282828;
 }

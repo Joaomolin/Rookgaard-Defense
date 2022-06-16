@@ -9,6 +9,8 @@ import { Sprite } from "./sprite.js";
 
 
 const canvas = document.getElementById('canvas');
+const inventoryCanvas = document.getElementById('inventoryCanvas');
+
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
 canvas.height = 600;
