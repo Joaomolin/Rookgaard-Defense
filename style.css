@@ -1,5 +1,5 @@
 body {
-    background-image: url("/assets/GrayBackground.png");
+    background-image: url("./assets/GrayBackground.png");
     image-rendering: pixelated;
     image-rendering: crisp-edges;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 .inventoryCanvas {
-    background-image: url("/assets/InventoryBackground.png");/*127px, 155px;*/
+    background-image: url("./assets/InventoryBackground.png");/*127px, 155px;*/
 
     position: absolute;
     top: 10%;
