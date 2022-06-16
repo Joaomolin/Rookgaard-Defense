@@ -28,11 +28,9 @@ const enemies = [];
 const enemyTypes = [];
 const enemyPos = [];
 
-
-
-
 const bg = new Image();
-bg.src = "assets/bghorizontal.png";
+bg.src = "./assets/bghorizontal.png";
+
 //Board
 const controlsBar = {
     width: canvas.width,

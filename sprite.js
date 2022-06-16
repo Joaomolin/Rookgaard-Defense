@@ -49,33 +49,33 @@ function getSprite(i, self){
     const sprite = new Image();
     switch(i){
         case 2:
-            sprite.src = "assets/Ground1.png";
+            sprite.src = "./assets/Ground1.png";
         break;
         case 3:
-            sprite.src = "assets/bghorizontal.png";
+            sprite.src = "./assets/bghorizontal.png";
             break;
         case 4:
-            sprite.src = "assets/queijo.png";
+            sprite.src = "./assets/queijo.png";
         break;
         case 6:
-            sprite.src = "assets/teleport.png";
+            sprite.src = "./assets/teleport.png";
             self.maxFrame = 8;
             self.spriteSpeed = 4;
         break;
         case 10:
-            sprite.src = "assets/Arrow.png";
+            sprite.src = "./assets/Arrow.png";
         break;
         
         case 100:
-            sprite.src = "assets/OrcInimigo.png";
+            sprite.src = "./assets/OrcInimigo.png";
             self.maxFrame = 1;
         break;
         case 101:
-            sprite.src = "assets/cobra.png";
+            sprite.src = "./assets/cobra.png";
             self.maxFrame = 1;
         break;
         case 102:
-            sprite.src = "assets/SlimeInimigo.png";
+            sprite.src = "./assets/SlimeInimigo.png";
             self.spriteWidth = 66;
             self.spriteHeight = 66;
             self.maxFrame = 7;
@@ -83,13 +83,13 @@ function getSprite(i, self){
         break;
 
         case 200:
-            sprite.src = "assets/MinoArcher.png";
+            sprite.src = "./assets/MinoArcher.png";
             self.maxFrame = 1;
             self.spriteSpeed = 50 + addRandomSpeed();
         break;
 
         default:
-            sprite.src = "assets/OrcInimigo.png";
+            sprite.src = "./assets/OrcInimigo.png";
             self.maxFrame = 1;
         break;
     }
