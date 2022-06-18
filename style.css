@@ -1,9 +1,12 @@
 .background {
     background-image: url("./assets/GrayBackground.png");
+    image-rendering: pixelated;
 }
 
 .darkBackground {
     background-image: url("./assets/DarkGrayBackground.png");
+    image-rendering: pixelated;
+
 }
 
 .mainCanvas {
@@ -14,7 +17,7 @@
     width: 900px;
     height: 600px;
     
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 
     font-family: 'Roboto Mono', monospace;
 
@@ -46,10 +49,10 @@
 }
 
 .tibiaBorder{
-    border-top: 3px solid #737373;
-    border-left: 3px solid #737373;
-    border-right: 3px solid #282828;
-    border-bottom: 3px solid #282828;
+    border-top: 2px solid #737373;
+    border-left: 2px solid #737373;
+    border-right: 2px solid #282828;
+    border-bottom: 2px solid #282828;
 }
 
 .invTileBorder{
@@ -57,4 +60,5 @@
     border-left: 1px solid black;
     border-right: 1px solid #737373;
     border-bottom: 1px solid #737373;
+
 }
