@@ -176,8 +176,6 @@
         }
 
         function loadAndDrawSprite(id, removeIdx) {
-            //console.log('Drawing: ' + id);
-
             //limpar o desenho antigo antes de fazer outro
             ctx.clearRect(0, 0, 32, 32);
 
@@ -239,15 +237,6 @@
             link.click();
         }
 
-        function dlCanvas() {
-            
-            const link = document.createElement('a');
-            link.download = downloadInput.value + '.png';
-            
-            const cvIndex = downloadInput.value % limit;
-            link.href = document.getElementById(`canvas${cvIndex}`).toDataURL();
-            link.click();
-        }
     </script>
 </body>
 

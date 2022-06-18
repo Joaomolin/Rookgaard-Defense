@@ -11,28 +11,36 @@ body {
     transform: translate(-50%, -50%);
     width: 900px;
     height: 600px;
+    
+    image-rendering: crisp-edges;
 
     font-family: 'Roboto Mono', monospace;
 
     
-    border-top: 3px solid #737373;
-    border-left: 3px solid #737373;
-    border-right: 3px solid #282828;
-    border-bottom: 3px solid #282828;
-    
 }
 
 .inventoryCanvas {
-    background-image: url("./assets/InventoryBackground.png");/*127px, 155px;*/
+    background-image: url("./assets/InventoryBackground.png"); /*<!-- 108px / 145px -->*/
 
     position: absolute;
     top: 10%;
-    left: 5%;
     
-    width:  254px;
-    height: 310px;
+    width: 216px;
+    height: 290px;
     background-size: 100%;
     
+}
+
+.inventoryTile {
+    
+    width: 32px;
+    height: 32px;
+
+    border: black solid 3px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: grey;
+
 }
 
 .tibiaBorder{

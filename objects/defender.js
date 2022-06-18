@@ -3,7 +3,6 @@ import { Sprite } from "../sprite.js";
 
 export class Defender {
     constructor(ctx, x, y, width, height){
-        console.log(`${x} e ${y}`);
         this.ctx = ctx;
         this.x = x;
         this.y = y;
