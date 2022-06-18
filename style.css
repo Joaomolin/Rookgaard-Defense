@@ -1,9 +1,12 @@
 .background {
-    background-image: url("./assets/GrayBackground.png");
+    background-image: url("./assets/GrayBackground.png");    
+    /* background-image: black;     */
+    image-rendering: pixelated;
 }
 
 .darkBackground {
     background-image: url("./assets/DarkGrayBackground.png");
+    image-rendering: pixelated;
 }
 
 .mainCanvas {
@@ -14,7 +17,7 @@
     width: 900px;
     height: 600px;
     
-    image-rendering: crisp-edges;
+    image-rendering: pixelated;
 
     font-family: 'Roboto Mono', monospace;
 
@@ -38,9 +41,8 @@
     width: 32px;
     height: 32px;
 
-    border: black solid 3px;
+    border: black solid 3px;    
     image-rendering: pixelated;
-    image-rendering: crisp-edges;
     background: grey;
 
 }
