@@ -11,7 +11,7 @@ export class Inventory {
      startInventory(){
         console.log('Starting inv');
         for(let i = 0; i < this.invSlots.length; i++){
-            this.invLevels.push(0);
+            this.invLevels.push(1);
             
             //Click
             const doc = document.getElementById(this.invSlots[i] + "Slot");
@@ -30,6 +30,17 @@ export class Inventory {
             img.src = self.slots.getImageSource(i);
             
             console.log(`Level up ${self.invSlots[i]} from ${self.invLevels[i] - 1} to ${self.invLevels[i]} `);
+            
+        });
+        doc.addEventListener('mouseover', function(){     
+                    
+
+            console.log(`MouseOver`);
+            
+        });
+        img.addEventListener('MouseOver', function(){     
+                    
+            console.log(`MouseOver`);
             
         });
     }

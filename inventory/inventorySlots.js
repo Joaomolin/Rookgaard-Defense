@@ -73,10 +73,16 @@ export class InventorySlots {
 
     updateAmulet(){
         switch(this.invLevels[0]){
+            case 0:
+                this.amulet = "https://www.tibiawiki.com.br/images/a/ab/NoAmulet.gif";
+                break;
             case 1:
-                this.amulet = "https://www.tibiawiki.com.br/images/1/18/Silver_Amulet.gif";
+                this.amulet = "https://www.tibiawiki.com.br/images/3/3e/Crystal_Necklace.gif"
                 break;
             case 2:
+                this.amulet = "https://www.tibiawiki.com.br/images/e/ee/Bronze_Amulet.gif";
+                break;
+            case 3:
                 this.amulet = "https://www.tibiawiki.com.br/images/1/13/Amulet_of_Loss.gif";
                 break;
 
@@ -87,8 +93,20 @@ export class InventorySlots {
     }
     updateWeapon(){
         switch(this.invLevels[1]){
+            case 0:
+                this.weapon = "https://www.tibiawiki.com.br/images/e/e6/NoWeaponRight.gif";
+                break;
             case 1:
                 this.weapon = "https://www.tibiawiki.com.br/images/3/3a/Dagger.gif";
+                break;
+            case 2:
+                this.weapon = "https://www.tibiawiki.com.br/images/1/1f/Sword.gif";
+                break;
+            case 3:
+                this.weapon = "https://www.tibiawiki.com.br/images/4/4c/Fire_Sword.gif";
+                break;
+            case 4:
+                this.weapon = "https://www.tibiawiki.com.br/images/7/7a/Magic_Longsword.gif";
                 break;
 
             default:
@@ -98,10 +116,18 @@ export class InventorySlots {
     }
     updateRing(){
         switch(this.invLevels[2]){
+            case 0:
+                this.ring = "https://www.tibiawiki.com.br/images/a/a8/NoRing.gif";
+                break;
             case 1:
                 this.ring = "https://www.tibiawiki.com.br/images/5/57/Star_Ring.gif";
                 break;
-
+            case 2:
+                this.ring = "https://www.tibiawiki.com.br/images/1/1e/Life_Ring.gif";
+                break;
+            case 3:
+                this.ring = "https://www.tibiawiki.com.br/images/1/13/Ring_of_Healing.gif";
+                break;
             default:
                 this.ring = "https://www.tibiawiki.com.br/images/a/a8/NoRing.gif";
                 break;
@@ -109,8 +135,20 @@ export class InventorySlots {
     }
     updateHelmet(){
         switch(this.invLevels[3]){
+            case 0:
+                this.helmet = "https://www.tibiawiki.com.br/images/4/4e/NoHelmet.gif";
+                break;
             case 1:
                 this.helmet = "https://www.tibiawiki.com.br/images/2/29/Leather_Helmet.gif";
+                break;
+            case 2:
+                this.helmet = "https://www.tibiawiki.com.br/images/8/88/Chain_Helmet.gif";
+                break;
+            case 3:
+                this.helmet = "https://www.tibiawiki.com.br/images/c/cc/Crown_Helmet.gif";
+                break;
+            case 4:
+                this.helmet = "https://www.tibiawiki.com.br/images/4/4e/Demon_Helmet.gif";
                 break;
 
             default:
@@ -120,10 +158,21 @@ export class InventorySlots {
     }
     updateArmor(){
         switch(this.invLevels[4]){
+            case 0:
+                this.armor = "https://www.tibiawiki.com.br/images/5/5d/NoArmor.gif";
+                break;
             case 1:
                 this.armor = "https://www.tibiawiki.com.br/images/c/c9/Jacket.gif";
                 break;
-
+            case 2:
+                this.armor = "https://www.tibiawiki.com.br/images/2/29/Chain_Armor.gif";
+                break;
+            case 3:
+                this.armor = "https://www.tibiawiki.com.br/images/7/7c/Crown_Armor.gif";
+                break;
+            case 4:
+                this.armor = "https://www.tibiawiki.com.br/images/e/e0/Demon_Armor.gif";
+                break;
             default:
                 this.armor = "https://www.tibiawiki.com.br/images/5/5d/NoArmor.gif";
                 break;
@@ -131,10 +180,21 @@ export class InventorySlots {
     }
     updateLegs(){
         switch(this.invLevels[5]){
+            case 0:
+                this.legs = "https://www.tibiawiki.com.br/images/7/7d/NoLegs.gif";
+                break;
             case 1:
                 this.legs = "https://www.tibiawiki.com.br/images/0/07/Leather_Legs.gif";
                 break;
-
+            case 2:
+                this.legs = "https://www.tibiawiki.com.br/images/0/03/Chain_Legs.gif";
+                break;
+            case 3:
+                this.legs = "https://www.tibiawiki.com.br/images/2/2b/Crown_Legs.gif";
+                break;
+            case 4:
+                this.legs = "https://www.tibiawiki.com.br/images/0/0d/Demon_Legs.gif";
+                break;
             default:
                 this.legs = "https://www.tibiawiki.com.br/images/7/7d/NoLegs.gif";
                 break;
@@ -142,8 +202,19 @@ export class InventorySlots {
     }
     updateBoots(){
         switch(this.invLevels[6]){
+            case 0:
+                this.boots = "https://www.tibiawiki.com.br/images/1/10/NoBoots.gif";
+                break;
             case 1:
                 this.boots = "https://www.tibiawiki.com.br/images/9/94/Leather_Boots.gif";
+                break;
+            case 2:
+                this.boots = "https://www.tibiawiki.com.br/images/d/d4/Golden_Boots.gif";
+                break;
+            case 3:
+                this.boots = "https://www.tibiawiki.com.br/images/2/2d/Pair_of_Soft_Boots.gif";
+                break;
+            case 4:
                 break;
 
             default:
@@ -153,7 +224,16 @@ export class InventorySlots {
     }
     updateBag(){
         switch(this.invLevels[7]){
+            case 0:
+                this.bag = "https://www.tibiawiki.com.br/images/d/dc/NoBag.gif";
+                break;
             case 1:
+                this.bag = "https://www.tibiawiki.com.br/images/d/d6/Bag.gif";
+                break;
+            case 2:
+                this.bag = "https://www.tibiawiki.com.br/images/9/9a/Backpack.gif";
+                break;
+            case 3:
                 this.bag = "https://www.tibiawiki.com.br/images/6/6d/Buggy_Backpack.gif";
                 break;
 
@@ -164,10 +244,24 @@ export class InventorySlots {
     }
     updateShield(){
         switch(this.invLevels[8]){
+            case 0:
+                this.shield = "https://www.tibiawiki.com.br/images/4/44/NoWeaponLeft.gif";
+                break;
             case 1:
                 this.shield = "https://www.tibiawiki.com.br/images/2/2d/Wooden_Shield.gif";
                 break;
-
+            case 2:
+                this.shield = "https://www.tibiawiki.com.br/images/1/17/Steel_Shield.gif";
+                break;
+            case 3:
+                this.shield = "https://www.tibiawiki.com.br/images/4/41/Crown_Shield.gif";
+                break;
+            case 4:
+                this.shield = "https://www.tibiawiki.com.br/images/4/4f/Demon_Shield.gif";
+                break;
+            case 5:
+                this.shield = "https://www.tibiawiki.com.br/images/1/1f/Blessed_Shield.gif";
+                break;
             default:
                 this.shield = "https://www.tibiawiki.com.br/images/4/44/NoWeaponLeft.gif";
                 break;
@@ -175,8 +269,14 @@ export class InventorySlots {
     }
     updateAmmo(){
         switch(this.invLevels[9]){
+            case 0:
+                this.ammo = "https://www.tibiawiki.com.br/images/d/d2/NoAmmo.gif";
+                break;
             case 1:
                 this.ammo = "https://www.tibiawiki.com.br/images/6/69/Arrow.gif";
+                break;
+            case 2:
+                this.ammo = "https://www.tibiawiki.com.br/images/4/46/Diamond_Arrow.gif"
                 break;
 
             default:
