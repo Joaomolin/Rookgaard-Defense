@@ -6,10 +6,10 @@ import { handlePowerUp } from "./objects/powerUp.js"
 import { Mouse } from "./mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
 import { Sprite } from "./sprite.js";
+import { Inventory } from "./inventory/inventory.js";
 
 
 const canvas = document.getElementById('canvas');
-const inventoryCanvas = document.getElementById('inventoryCanvas');
 
 const ctx = canvas.getContext('2d');
 canvas.width = 900;
@@ -25,12 +25,10 @@ const projectiles = [];
 //
 const defenders = [];
 const enemies = [];
-const enemyTypes = [];
 const enemyPos = [];
-
-const bg = new Image();
-bg.src = "./assets/bghorizontal.png";
-
+//Inv
+const inventory = new Inventory();
+inventory.startInventory();
 //Board
 const controlsBar = {
     width: canvas.width,
@@ -121,13 +119,16 @@ function handleGameStatus(){
     }
 }
 
+const grayBg = new Image();
+grayBg.src = "./assets/GrayBackground.png";
+
 function animate(){
     //
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //
     //ctx.fillStyle = 'blue';
     //ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
-    ctx.drawImage(  bg, 
+    ctx.drawImage(  grayBg, 
                     0, 
                     0, 
                     900, 
