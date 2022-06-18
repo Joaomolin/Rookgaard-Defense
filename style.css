@@ -1,7 +1,9 @@
-body {
+.background {
     background-image: url("./assets/GrayBackground.png");
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+}
+
+.darkBackground {
+    background-image: url("./assets/DarkGrayBackground.png");
 }
 
 .mainCanvas {
@@ -48,4 +50,11 @@ body {
     border-left: 3px solid #737373;
     border-right: 3px solid #282828;
     border-bottom: 3px solid #282828;
+}
+
+.invTileBorder{
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid #737373;
+    border-bottom: 1px solid #737373;
 }
