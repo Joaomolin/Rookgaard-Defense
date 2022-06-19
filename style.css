@@ -9,11 +9,19 @@
     image-rendering: pixelated;
 }
 
-body{
+.invColumn>*{
+    margin: 3px;
+}
+
+.invColumn{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .inventoryTable{
+    display: flex;
+    flex-wrap: nowrap;
     height: fit-content;
 }
 
@@ -36,8 +44,7 @@ body{
     border-bottom: 3px solid #282828;
 }
 
-.invTileBorder{
-
+.invTileBorder{ 
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid #737373;
@@ -51,4 +58,12 @@ body{
 
     max-width: 15vh;
     max-height: 15vh;
+}
+
+table{
+    border-spacing: 5px;
+}
+
+body{
+    display: flex;
 }
