@@ -10,6 +10,7 @@ export class Defender {
         this.height = height;
         this.shooting = false;
         this.health = 100;
+        this.maxHealth = this.health;
         this.projectiles = [];
         this.timer = 0;
 
@@ -23,11 +24,26 @@ export class Defender {
         this.ctx.globalAlpha = 1;
         this.ctx.fillStyle = 'black';
         this.ctx.font = '30px Verdana';
-        this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
-
+        // this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
+        this.showHealthBar();
         
         this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
         this.spawnSprite.draw(this.ctx, this.x, this.y, this.width, this.height);
+    }
+
+    showHealthBar(){
+        const barSize = 94;
+        const lifePercentage = this.getPercentage(this.health, this.maxHealth);
+        console.log(lifePercentage);
+        this.ctx.fillStyle = lifePercentage > 30 ? 'green' : 'red';
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = 'black';
+        this.ctx.fillRect(this.x, this.y, lifePercentage, 6);
+        this.ctx.strokeRect(this.x, this.y, barSize, 6);
+    }
+
+    getPercentage(a, b){
+        return a * 94 / b;
     }
     
     update(projectiles, frame){

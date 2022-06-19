@@ -20,7 +20,7 @@ export class Inventory {
             this.addListener(doc, img, i, this);
             
         }
-        console.log(`${this.invLevels.length} = ${this.invSlots.length}`);
+        console.log(`Inventory check ${this.invLevels.length} = ${this.invSlots.length}`);
     }
 
     addListener(doc, img, i, self){
@@ -28,26 +28,10 @@ export class Inventory {
         doc.addEventListener('click', function(){     
             self.invLevels[i]++;
             img.src = self.slots.getImageSource(i);
-            
             console.log(`Level up ${self.invSlots[i]} from ${self.invLevels[i] - 1} to ${self.invLevels[i]} `);
             
         });
-        doc.addEventListener('mouseover', function(){     
-                    
-
-            console.log(`MouseOver`);
-            
-        });
-        img.addEventListener('MouseOver', function(){     
-                    
-            console.log(`MouseOver`);
-            
-        });
-    }
-
-   
-
-    
+    }  
 
 }
 

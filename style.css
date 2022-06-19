@@ -1,7 +1,7 @@
 .background {
     background-image: url("./assets/GrayBackground.png");    
-    /* background-image: black;     */
     image-rendering: pixelated;
+
 }
 
 .darkBackground {
@@ -9,42 +9,24 @@
     image-rendering: pixelated;
 }
 
+body{
+    display: flex;
+}
+
+.inventoryTable{
+    height: fit-content;
+}
+
 .mainCanvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 900px;
-    height: 600px;
+    /* min-width: 120vh; */
+    /* min-height: 80vh; */
+
+    /* max-width: 135vh; */
+    /* max-height: 90vh; */
     
     image-rendering: pixelated;
 
     font-family: 'Roboto Mono', monospace;
-
-    
-}
-
-.inventoryCanvas {
-    background-image: url("./assets/InventoryBackground.png"); /*<!-- 108px / 145px -->*/
-
-    position: absolute;
-    top: 10%;
-    
-    width: 216px;
-    height: 290px;
-    background-size: 100%;
-    
-}
-
-.inventoryTile {
-    
-    width: 32px;
-    height: 32px;
-
-    border: black solid 3px;    
-    image-rendering: pixelated;
-    background: grey;
-
 }
 
 .tibiaBorder{
@@ -55,8 +37,18 @@
 }
 
 .invTileBorder{
+
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid #737373;
     border-bottom: 1px solid #737373;
+}
+
+.invTileSize{
+    /* min 8vh */
+    min-width: 8vh;
+    min-height: 8vh;
+
+    max-width: 15vh;
+    max-height: 15vh;
 }
