@@ -7,6 +7,7 @@ import { Mouse } from "./objects/mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
 import { Sprite } from "./objects/sprite.js";
 import { Inventory } from "./objects/inventory/inventory.js";
+import { Cell } from "./objects/cell.js";
 
 
 const canvas = document.getElementById('canvas');
@@ -35,44 +36,10 @@ const controlsBar = {
     height: 130,
 };
 
-class Cell {
-    constructor(x, y){
-        
-        this.x = x;
-        this.y = y;
-        this.width = Globals.cellSize;
-        this.height = Globals.cellSize;
-
-        this.sprite = new Sprite(2);
-    }
-
-    draw(){
-        this.drawBackground();
-
-        if (mouse.x && mouse.y && collision(this, mouse)){
-            ctx.strokeStyle = 'black';
-            ctx.strokeRect(this.x, this.y, this.width, this.height);
-        }
-        
-    }
-
-    drawBackground(){
-        ctx.drawImage( this.sprite.type, 
-            this.sprite.frameX * this.sprite.spriteWidth, 
-            this.sprite.frameY * this.sprite.spriteHeight, 
-            this.sprite.spriteWidth - 2, 
-            this.sprite.spriteHeight - 2, 
-            this.x, 
-            this.y, 
-            this.width, 
-            this.height);
-    }
-}
-
 function createGrid(){
     for(let y = Globals.cellSize; y < canvas.height; y += Globals.cellSize){
         for (let x = 0; x < canvas.width; x += Globals.cellSize){
-            gameGrid.push(new Cell(x, y));
+            gameGrid.push(new Cell(ctx, mouse, x, y));
         }
     }
 }
@@ -80,7 +47,7 @@ createGrid();
 
 function handleGameGrid(){
     for(let i = 0; i < gameGrid.length; i++){
-        gameGrid[i].draw();
+        gameGrid[i].draw(collision);
     }
 }
 
