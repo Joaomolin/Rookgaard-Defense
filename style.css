@@ -1,19 +1,34 @@
 .background {
     background-image: url("./assets/GrayBackground.png");    
-    image-rendering: pixelated;
 
 }
 
 .darkBackground {
     background-image: url("./assets/DarkGrayBackground.png");
-    image-rendering: pixelated;
+    
 }
 
-.invColumn>*{
+.header{
+    background-image: url("./assets/MidGrayBackground.png");
+    display: flex;
+    align-items: center;
+    color: #999999;
+    border-bottom: 1px solid #303030;
+    border-right: 1px solid #303030;
+    margin-bottom: 3px;
+    
+}
+
+.header img {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.inventoryColumn>*{
     margin: 3px;
 }
 
-.invColumn{
+.inventoryColumn{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,38 +47,43 @@
     /* max-width: 135vh; */
     /* max-height: 90vh; */
     
-    image-rendering: pixelated;
+    width: 900px;
+    height: 600px;
 
-    font-family: 'Roboto Mono', monospace;
 }
 
 .tibiaBorder{
-    border-top: 3px solid #737373;
-    border-left: 3px solid #737373;
-    border-right: 3px solid #282828;
-    border-bottom: 3px solid #282828;
+    border-top: 2px solid #707070;
+    border-left: 2px solid #707070;
+    border-right: 2px solid #303030;
+    border-bottom: 2px solid #303030;
 }
 
 .invTileBorder{ 
     border-top: 1px solid black;
     border-left: 1px solid black;
-    border-right: 1px solid #737373;
-    border-bottom: 1px solid #737373;
+    border-right: 1px solid #707070;
+    border-bottom: 1px solid #707070;
 }
 
 .invTileSize{
     /* min 8vh */
-    min-width: 8vh;
-    min-height: 8vh;
+    min-width: 5vh;
+    min-height: 5vh;
 
     max-width: 15vh;
     max-height: 15vh;
+
+    width: 64px;
+    height: 64px;
 }
 
-table{
-    border-spacing: 5px;
+canvas{
+    image-rendering: pixelated;
 }
 
 body{
     display: flex;
+    image-rendering: pixelated;
+    font-family: 'Roboto Mono', monospace;
 }
