@@ -1,5 +1,5 @@
-import { Globals, Resources, randomIntFromInterval } from "../globals.js";
-import { Sprite } from "../sprite.js";
+import { Globals, Resources, randomIntFromInterval } from "./globals.js";
+import { Sprite } from "./sprite.js";
 
 export class Enemy {
     constructor(ctx, verticalPosition){

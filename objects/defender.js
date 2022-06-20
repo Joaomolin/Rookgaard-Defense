@@ -1,5 +1,5 @@
 import { Projectile } from "./projectile.js";
-import { Sprite } from "../sprite.js";
+import { Sprite } from "./sprite.js";
 
 export class Defender {
     constructor(ctx, x, y, width, height){
@@ -19,23 +19,16 @@ export class Defender {
     }
 
     draw(){
-        this.ctx.globalAlpha = 0.2;
-        this.ctx.fillStyle = 'blue';
-        this.ctx.globalAlpha = 1;
-        this.ctx.fillStyle = 'black';
-        this.ctx.font = '30px Verdana';
-        // this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
-        this.showHealthBar();
-        
         this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
         this.spawnSprite.draw(this.ctx, this.x, this.y, this.width, this.height);
+        this.showHealthBar();
     }
 
     showHealthBar(){
         const barSize = 94;
         const lifePercentage = this.getPercentage(this.health, this.maxHealth);
-        console.log(lifePercentage);
-        this.ctx.fillStyle = lifePercentage > 30 ? 'green' : 'red';
+
+        this.ctx.fillStyle = lifePercentage > 30 ? '#309030' : 'red';
         this.ctx.lineWidth = 2;
         this.ctx.strokeStyle = 'black';
         this.ctx.fillRect(this.x, this.y, lifePercentage, 6);

@@ -52,6 +52,16 @@
 
 }
 
+.skillTable{
+    float: left;width: 49%;margin: 3px;
+}
+
+p{
+    margin: 3px;
+    color: #999999;
+    font-size: 14px;
+}
+
 .tibiaBorder{
     border-top: 2px solid #707070;
     border-left: 2px solid #707070;
@@ -71,11 +81,11 @@
     min-width: 5vh;
     min-height: 5vh;
 
-    max-width: 15vh;
-    max-height: 15vh;
+    max-width: 10vh;
+    max-height: 10vh;
 
-    width: 64px;
-    height: 64px;
+    width: 48px;
+    height: 48px;
 }
 
 canvas{

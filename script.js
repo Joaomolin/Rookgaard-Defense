@@ -1,12 +1,12 @@
 import { handleProjectiles } from "./objects/projectile.js";
 import { Defender, handleDefenders } from "./objects/defender.js";
 import { handleEnemies } from "./objects/enemy.js";
-import { Globals, Resources } from "./globals.js";
+import { Globals, Resources } from "./objects/globals.js";
 import { handlePowerUp } from "./objects/powerUp.js"
-import { Mouse } from "./mouse.js"
+import { Mouse } from "./objects/mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
-import { Sprite } from "./sprite.js";
-import { Inventory } from "./inventory/inventory.js";
+import { Sprite } from "./objects/sprite.js";
+import { Inventory } from "./objects/inventory/inventory.js";
 
 
 const canvas = document.getElementById('canvas');

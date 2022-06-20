@@ -1,5 +1,5 @@
-import { Sprite } from "../sprite.js";
-import { Globals } from "../globals.js";
+import { Sprite } from "./sprite.js";
+import { Globals } from "./globals.js";
 
 export class Projectile {
     constructor(ctx, x, y){

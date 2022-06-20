@@ -1,5 +1,5 @@
-import { Globals, Resources } from "../globals.js";
-import { Sprite } from "../sprite.js";
+import { Globals, Resources } from "./globals.js";
+import { Sprite } from "./sprite.js";
 import { FloatingMessage } from "./floatingMessage.js";
 
 const powerUps = [];
