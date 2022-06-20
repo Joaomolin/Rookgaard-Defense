@@ -1,5 +1,6 @@
 import { Globals, Resources, randomIntFromInterval } from "./globals.js";
 import { Sprite } from "./sprite.js";
+import { HealthBar } from "./healthBar.js";
 
 export class Enemy {
     constructor(ctx, verticalPosition){
@@ -15,7 +16,7 @@ export class Enemy {
         this.health = randomIntFromInterval(100, 200);
         this.maxHealth = this.health;
 
-        //newSPrite
+        this.healthBar = new HealthBar(this);
         this.spawnSprite = new Sprite(6, true);
         this.sprite = new Sprite(randomIntFromInterval(100, 102));
     }
@@ -27,18 +28,10 @@ export class Enemy {
         this.spawnSprite.update(frame);
     }
 
-    draw(){
-        this.ctx.globalAlpha = 0.2;
-        this.ctx.fillStyle = 'red';
-        //this.ctx.fillRect(this.x, this.y, this.width, this.height);
-        this.ctx.globalAlpha = 1;
-        this.ctx.fillStyle = 'black';
-        this.ctx.font = '30px Verdana';
-        this.ctx.fillText(Math.floor(this.health), this.x + this.sprite.spriteWidth / 2, this.y);
-    
-        //this.ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+    draw(){    
         this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
         this.spawnSprite.draw(this.ctx, this.x, this.y, this.width, this.height);
+        this.healthBar.draw();
     }
 }
 

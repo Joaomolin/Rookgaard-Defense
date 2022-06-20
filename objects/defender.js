@@ -1,3 +1,4 @@
+import { HealthBar } from "./healthBar.js";
 import { Projectile } from "./projectile.js";
 import { Sprite } from "./sprite.js";
 
@@ -13,7 +14,8 @@ export class Defender {
         this.maxHealth = this.health;
         this.projectiles = [];
         this.timer = 0;
-
+        
+        this.healthBar = new HealthBar(this);
         this.spawnSprite = new Sprite(6, true);
         this.sprite = new Sprite(200);
     }
@@ -21,23 +23,10 @@ export class Defender {
     draw(){
         this.sprite.draw(this.ctx, this.x, this.y, this.width, this.height);
         this.spawnSprite.draw(this.ctx, this.x, this.y, this.width, this.height);
-        this.showHealthBar();
+        this.healthBar.draw();
     }
 
-    showHealthBar(){
-        const barSize = 94;
-        const lifePercentage = this.getPercentage(this.health, this.maxHealth);
-
-        this.ctx.fillStyle = lifePercentage > 30 ? '#309030' : 'red';
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeStyle = 'black';
-        this.ctx.fillRect(this.x, this.y, lifePercentage, 6);
-        this.ctx.strokeRect(this.x, this.y, barSize, 6);
-    }
-
-    getPercentage(a, b){
-        return a * 94 / b;
-    }
+    
     
     update(projectiles, frame){
         this.spawnSprite.update(frame);
