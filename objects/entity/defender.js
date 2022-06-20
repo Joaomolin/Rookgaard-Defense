@@ -1,7 +1,7 @@
-import { Entity } from "./entity/entity.js";
-import { HealthBar } from "./healthBar.js";
-import { Projectile } from "./projectile.js";
-import { Sprite } from "./sprite.js";
+import { Entity } from "./entity.js";
+import { HealthBar } from "../healthBar.js";
+import { Projectile } from "../projectile.js";
+import { Sprite } from "../sprite.js";
 
 export class Defender {
     constructor(ctx, x, y, width, height){
