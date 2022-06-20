@@ -1,3 +1,4 @@
+import { Entity } from "./entity/entity.js";
 import { HealthBar } from "./healthBar.js";
 import { Projectile } from "./projectile.js";
 import { Sprite } from "./sprite.js";
@@ -12,9 +13,9 @@ export class Defender {
         this.shooting = false;
         this.health = 100;
         this.maxHealth = this.health;
-        this.projectiles = [];
         this.timer = 0;
         
+        this.entity = new Entity(x, y ,width, height, 100);
         this.healthBar = new HealthBar(this);
         this.spawnSprite = new Sprite(6, true);
         this.sprite = new Sprite(200);
@@ -26,7 +27,6 @@ export class Defender {
         this.healthBar.draw();
     }
 
-    
     
     update(projectiles, frame){
         this.spawnSprite.update(frame);

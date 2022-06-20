@@ -12,7 +12,7 @@ import { Inventory } from "./objects/inventory/inventory.js";
 const canvas = document.getElementById('canvas');
 
 const ctx = canvas.getContext('2d');
-canvas.width = 900;
+canvas.width = 1200;
 canvas.height = 600;
 const mouse = new Mouse(canvas);
 
@@ -99,13 +99,13 @@ function handleFloatingMessages(){
 //Utilities
 function handleGameStatus(){
     ctx.fillStyle = 'black';
-    ctx.font = '30px Verdana';
+    ctx.font = '40px Tibia Regular';
     ctx.fillText(`Resources: ${Resources.wallet}`, 20, 40);
     ctx.fillText(`Score: ${Resources.score}`, 20, 80);
 
     if (Globals.gameOver){
         ctx.fillStyle = 'black';        
-        ctx.font = '60px Tahoma';
+        ctx.font = '60px Tibia Regular';
         ctx.fillText('Game Over', 300, 350);
         ctx.fillText(`Score: ${Resources.score}`, 300, 400);
 
@@ -113,7 +113,7 @@ function handleGameStatus(){
 
     if (Resources.score >= Globals.winningScore){
         ctx.fillStyle = 'black';        
-        ctx.font = '60px Roboto Mono';
+        ctx.font = '60px Tibia Regular';
         ctx.fillText('You won!', 300, 350);
         ctx.fillText(`Score: ${Resources.score}`, 300, 400);
     }
@@ -125,19 +125,6 @@ grayBg.src = "./assets/GrayBackground.png";
 function animate(){
     //
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //
-    //ctx.fillStyle = 'blue';
-    //ctx.fillRect(0, 0, controlsBar.width, controlsBar.height);
-    ctx.drawImage(  grayBg, 
-                    0, 
-                    0, 
-                    900, 
-                    100, 
-                    0, 
-                    0, 
-                    controlsBar.width, 
-                    controlsBar.height);
-    
     
     //Game
     handleGameGrid();

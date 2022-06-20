@@ -10,6 +10,7 @@
 
 .header{
     background-image: url("./assets/MidGrayBackground.png");
+    font-size: 20px;
     display: flex;
     align-items: center;
     color: #999999;
@@ -47,13 +48,13 @@
     /* max-width: 135vh; */
     /* max-height: 90vh; */
     
-    width: 900px;
+    width: 1200px;
     height: 600px;
 
 }
 
 .skillTable{
-    float: left;width: 49%;margin: 3px;
+    width: 49%;margin: 3px;
 }
 
 p{
@@ -95,5 +96,6 @@ canvas{
 body{
     display: flex;
     image-rendering: pixelated;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Tibia Regular';
+    src: URL('./assets/Tibia.ttf') format('truetype');
 }

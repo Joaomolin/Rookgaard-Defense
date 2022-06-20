@@ -1,7 +1,7 @@
 import { Globals, Resources, randomIntFromInterval } from "./globals.js";
 import { Sprite } from "./sprite.js";
 import { HealthBar } from "./healthBar.js";
-
+import { Entity } from "./entity/entity.js";
 export class Enemy {
     constructor(ctx, verticalPosition){
 
