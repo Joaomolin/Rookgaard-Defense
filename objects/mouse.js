@@ -5,8 +5,7 @@ export class Mouse {
         this.width = 0.1;
         this.height = 0.1;
         this.canvas = canvas;
-        this.canvasPosition = canvas.getBoundingClientRect();
-        
+        this.canvasPosition = canvas.getBoundingClientRect();    
     }
 
     update(){
@@ -22,3 +21,4 @@ export function getMouse(canvas){
     }
     return uniqueMouse;
 }
+

@@ -11,6 +11,8 @@ import { Cell } from "./objects/cell.js";
 
 
 const canvas = document.getElementById('canvas');
+const coinSlot = document.getElementById('coinSlot');
+const scoreSlot = document.getElementById('scoreSlot');
 
 const ctx = canvas.getContext('2d');
 canvas.width = 1200;
@@ -31,13 +33,8 @@ const enemyPos = [];
 const inventory = new Inventory();
 inventory.startInventory();
 //Board
-const controlsBar = {
-    width: canvas.width,
-    height: 130,
-};
-
 function createGrid(){
-    for(let y = Globals.cellSize; y < canvas.height; y += Globals.cellSize){
+    for(let y = 0; y < canvas.height; y += Globals.cellSize){
         for (let x = 0; x < canvas.width; x += Globals.cellSize){
             gameGrid.push(new Cell(ctx, mouse, x, y));
         }
@@ -65,10 +62,8 @@ function handleFloatingMessages(){
 
 //Utilities
 function handleGameStatus(){
-    ctx.fillStyle = 'black';
-    ctx.font = '40px Tibia Regular';
-    ctx.fillText(`Resources: ${Resources.wallet}`, 20, 40);
-    ctx.fillText(`Score: ${Resources.score}`, 20, 80);
+    scoreSlot.textContent = Resources.score;
+    coinSlot.textContent = Resources.wallet + 'g';
 
     if (Globals.gameOver){
         ctx.fillStyle = 'black';        
@@ -86,11 +81,7 @@ function handleGameStatus(){
     }
 }
 
-const grayBg = new Image();
-grayBg.src = "./assets/GrayBackground.png";
-
 function animate(){
-    //
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     //Game
@@ -130,7 +121,6 @@ canvas.addEventListener('click', function(){
     
     const gridPositionX = mouse.x - (mouse.x % Globals.cellSize) + Globals.cellGap;
     const gridPositionY = mouse.y - (mouse.y % Globals.cellSize) + Globals.cellGap;
-    if (gridPositionY < Globals.cellSize) return;
 
     for (let i = 0; i < defenders.length; i++){
         if (defenders[i].x === gridPositionX && defenders[i].y ===gridPositionY) return;
@@ -139,18 +129,16 @@ canvas.addEventListener('click', function(){
     let defenderCost = 100;
     if (Resources.wallet >= defenderCost){
         Resources.wallet -= defenderCost;
+        
         defenders.push(new Defender(ctx, gridPositionX, gridPositionY, 
                                     Globals.cellSize - Globals.cellGap * 2,
                                     Globals.cellSize - Globals.cellGap * 2));
     } else {        
-        floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, 'Need more resources', 20, 'blue'));
+        floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, 'Out of coins', 20, 'yellow'));
     }
 });
 
-window.addEventListener('resize', function(){
-    mouse.update();
-});
-
+//Mouse listener
 canvas.addEventListener('mousemove', function(e){
     mouse.update();
     mouse.x = e.x - mouse.canvasPosition.left;
@@ -158,6 +146,7 @@ canvas.addEventListener('mousemove', function(e){
 });
 
 canvas.addEventListener('mouseleave', function(e){
+    mouse.update();
     mouse.x = undefined;
     mouse.y = undefined;
 });

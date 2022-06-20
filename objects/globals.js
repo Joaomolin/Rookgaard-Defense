@@ -7,7 +7,7 @@ export const Globals = {
 } 
 
 export const Resources = {
-    wallet: 500,
+    wallet: 600,
     score: 0,
 };
 
