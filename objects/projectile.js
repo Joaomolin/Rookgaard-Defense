@@ -35,7 +35,7 @@ export function handleProjectiles(projectiles, enemies, collision){
         for (let j = 0; j < enemies.length; j++){
             if (projectiles[i] && enemies[j]){
                 if (collision(projectiles[i], enemies[j])){
-                    enemies[j].health -= projectiles[i].power;
+                    enemies[j].entity.health -= projectiles[i].power;
                     projectiles.splice(i, 1);
                     i--;
                 }

@@ -111,6 +111,12 @@ function animate(){
 animate();
 
 function collision(first, second){
+    if (first.entity){
+        first = first.entity;
+    }
+    if (second.entity){
+        second = second.entity;
+    }
     
     let collided = !( 
         first.x > second.x + second.width || 
