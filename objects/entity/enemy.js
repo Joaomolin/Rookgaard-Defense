@@ -58,11 +58,10 @@ export function handleEnemies(ctx, frame, enemies, enemyPos){
             Globals.gameOver = true;
         }
     }
-    
 
     //Spawn enemy
     if (frame % Globals.enemyInterval === 0){
-        let verticalPosition = Math.floor(Math.random() * 5 + 1) * Globals.cellSize + Globals.cellGap;
+        let verticalPosition = Math.floor(Math.random() * 6) * Globals.cellSize + Globals.cellGap;
         
         enemies.push(new Enemy(ctx, verticalPosition));
         enemyPos.push(verticalPosition);
