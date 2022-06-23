@@ -1,14 +1,14 @@
 .background {
-    background-image: url("./assets/GrayBackground.png");    
+    background-image: url("./assets/GrayBackground.png");
 
 }
 
 .darkBackground {
     background-image: url("./assets/DarkGrayBackground.png");
-    
+
 }
 
-.header{
+.header {
     background-image: url("./assets/MidGrayBackground.png");
     font-size: 20px;
     display: flex;
@@ -17,7 +17,7 @@
     border-bottom: 1px solid #303030;
     border-right: 1px solid #303030;
     margin-bottom: 3px;
-    
+
 }
 
 .header img {
@@ -25,17 +25,27 @@
     padding-right: 3px;
 }
 
-.inventoryColumn>*{
-    margin: 3px;
-}
-
-.inventoryColumn{
+.inventoryColumn {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.inventoryTable{
+.inventoryColumn>* {
+    margin: 3px;
+}
+
+.defendersTable {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.defendersTable>* {
+    margin: 3px;
+}
+
+.inventoryTable {
     display: flex;
     flex-wrap: nowrap;
     height: fit-content;
@@ -47,37 +57,48 @@
 
     /* max-width: 135vh; */
     /* max-height: 90vh; */
-    
+
     width: 1200px;
     height: 600px;
 
 }
 
-.skillTable{
-    width: 49%;margin: 3px;
+.skillTable {
+    width: 49%;
+    margin: 3px;
 }
 
-p{
+p {
     margin: 3px;
     color: #999999;
     font-size: 16px;
 }
 
-.tibiaBorder{
+.tibiaBorder {
     border-top: 2px solid #707070;
     border-left: 2px solid #707070;
     border-right: 2px solid #303030;
     border-bottom: 2px solid #303030;
 }
 
-.invTileBorder{ 
+.invTileBorder {
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid #707070;
     border-bottom: 1px solid #707070;
+
+
 }
 
-.invTileSize{
+.goldInventorySlot {
+    background-image: url('./assets/GoldBackground.png');
+    border-top: 1px solid #ceb200;
+    border-left: 1px solid #ceb200;
+    border-right: 1px solid #b89830;
+    border-bottom: 1px solid #b89830;
+}
+
+.invTileSize {
     /* min 8vh */
     min-width: 5vh;
     min-height: 5vh;
@@ -89,7 +110,7 @@ p{
     height: 48px;
 }
 
-.invTileHalfSize{
+.invTileHalfSize {
     /* min 8vh */
     min-width: 5vh;
     min-height: 2vh;
@@ -101,13 +122,21 @@ p{
     height: 21px;
 }
 
-canvas{
+canvas {
     image-rendering: pixelated;
 }
 
-body{
+body {
     display: flex;
     image-rendering: pixelated;
-    font-family: 'Tibia Regular';
-    src: URL('./assets/Tibia.ttf') format('truetype');
+    font-family: 'Tibia';
+}
+
+@font-face {
+    font-family: 'Tibia';
+    src: url('./assets/Tibia.woff2') format('woff2'),
+         url('./assets/Tibia.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }

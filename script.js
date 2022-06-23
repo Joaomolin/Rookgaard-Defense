@@ -8,6 +8,7 @@ import { FloatingMessage } from "./objects/floatingMessage.js";
 import { Inventory } from "./objects/sidebar/inventory/inventory.js";
 import { Cell } from "./objects/cell.js";
 import { SkillBar } from "./objects/sidebar/skillBar.js";
+import { Shop } from "./objects/sidebar/shop.js";
 
 
 const canvas = document.getElementById('canvas');
@@ -35,6 +36,9 @@ inventory.startInventory();
 //Skill bar
 const skillBar = new SkillBar();
 skillBar.startSkillBar();
+//Shop
+const shop = new Shop();
+shop.startShop();
 
 
 //Board
@@ -72,17 +76,17 @@ function handleGameStatus(){
 
     if (Globals.gameOver){
         ctx.fillStyle = 'black';        
-        ctx.font = '60px Tibia Regular';
-        ctx.fillText('Game Over', 300, 350);
-        ctx.fillText(`Score: ${Resources.score}`, 300, 400);
+        ctx.font = '80px Tibia';
+        ctx.fillText('Game Over', 400, 250);
+        ctx.fillText(`Score: ${Resources.score}`, 400, 350);
 
     }
 
     if (Resources.score >= Globals.winningScore){
         ctx.fillStyle = 'black';        
-        ctx.font = '60px Tibia Regular';
-        ctx.fillText('You won!', 300, 350);
-        ctx.fillText(`Score: ${Resources.score}`, 300, 400);
+        ctx.font = '80px Tibia';
+        ctx.fillText('You won!', 400, 250);
+        ctx.fillText(`Score: ${Resources.score}`, 400, 350);
     }
 }
 

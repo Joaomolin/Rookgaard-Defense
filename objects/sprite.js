@@ -49,7 +49,8 @@ function getSprite(i, self){
     const sprite = new Image();
     switch(i){
         case 2:
-            sprite.src = "./assets/Ground1.png";
+            //sprite.src = "./assets/Ground1.png";
+            sprite.src = "https://www.tibiawiki.com.br/images/2/2d/Terracotta.gif";
         break;
         case 3:
             sprite.src = "./assets/bghorizontal.png";

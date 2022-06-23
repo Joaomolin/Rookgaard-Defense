@@ -9,7 +9,7 @@ export class Inventory {
 
      //Inv
      startInventory(){
-        console.log('Starting inv');
+        // console.log('Starting inv');
         for(let i = 0; i < this.invSlots.length; i++){
             this.invLevels.push(1);
             
@@ -20,7 +20,7 @@ export class Inventory {
             this.addListener(doc, img, i, this);
             
         }
-        console.log(`Inventory check ${this.invLevels.length} = ${this.invSlots.length}`);
+        // console.log(`Inventory check ${this.invLevels.length} = ${this.invSlots.length}`);
     }
 
     addListener(doc, img, i, self){
@@ -28,8 +28,12 @@ export class Inventory {
         doc.addEventListener('click', function(){     
             self.invLevels[i]++;
             img.src = self.slots.getImageSource(i);
+
+            if (self.invLevels[i] >= 5){
+                //doc.classList.add('goldInventorySlot');
+            }
+
             console.log(`Level up ${self.invSlots[i]} from ${self.invLevels[i] - 1} to ${self.invLevels[i]} `);
-            
         });
     }  
 
