@@ -5,7 +5,7 @@ import { Globals, Resources } from "./objects/globals.js";
 import { handlePowerUp } from "./objects/powerUp.js"
 import { Mouse } from "./objects/mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
-import { Inventory } from "./objects/sidebar/inventory/inventory.js";
+import { createInventory } from "./objects/sidebar/inventory/inventory.js";
 import { Cell } from "./objects/cell.js";
 import { SkillBar } from "./objects/sidebar/skillBar.js";
 import { Shop } from "./objects/sidebar/shop.js";
@@ -31,14 +31,14 @@ const defenders = [];
 const enemies = [];
 const enemyPos = [];
 //Start inventory
-const inventory = new Inventory();
-inventory.startInventory();
+const inventory = createInventory(document);
+
 //Skill bar
 const skillBar = new SkillBar();
-skillBar.startSkillBar();
+skillBar.createSkillBar();
 //Shop
 const shop = new Shop();
-shop.startShop();
+shop.createShop();
 
 
 //Board

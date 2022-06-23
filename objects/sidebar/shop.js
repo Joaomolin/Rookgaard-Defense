@@ -6,7 +6,7 @@ export class Shop {
         this.selectedSlot = '1';
     }
 
-    startShop(){
+    createShop(){
 
         for(let i = 1; i <= this.slots.length; i++){
             const doc = document.getElementById(`shopSlot${i}`);

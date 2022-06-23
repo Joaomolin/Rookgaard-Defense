@@ -7,7 +7,7 @@ export class SkillBar{
 
     
 
-    startSkillBar(){
+    createSkillBar(){
         this.skills.forEach(element => {
             let div = document.createElement('p');
             div.innerText = element;
