@@ -1,13 +1,13 @@
-export class SkillBar{
-    constructor(){
+export class SkillBar {
+    constructor() {
         this.skills = ['Hitpoints', 'Fighting', 'Defense', 'Healing'];
         this.leftColumn = document.getElementById('leftColumn');
         this.rightColumn = document.getElementById('rightColumn');
     }
 
-    
 
-    createSkillBar(){
+
+    createSkillBar() {
         this.skills.forEach(element => {
             let div = document.createElement('p');
             div.innerText = element;

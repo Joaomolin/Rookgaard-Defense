@@ -42,27 +42,27 @@ shop.createShop();
 
 
 //Board
-function createGrid(){
-    for(let y = 0; y < canvas.height; y += Globals.cellSize){
-        for (let x = 0; x < canvas.width; x += Globals.cellSize){
+function createGrid() {
+    for (let y = 0; y < canvas.height; y += Globals.cellSize) {
+        for (let x = 0; x < canvas.width; x += Globals.cellSize) {
             gameGrid.push(new Cell(ctx, mouse, x, y));
         }
     }
 }
 createGrid();
 
-function handleGameGrid(){
-    for(let i = 0; i < gameGrid.length; i++){
+function handleGameGrid() {
+    for (let i = 0; i < gameGrid.length; i++) {
         gameGrid[i].draw(collision);
     }
 }
 
-function handleFloatingMessages(){
-    for(let i = 0; i < floatingMessages.length; i++){
+function handleFloatingMessages() {
+    for (let i = 0; i < floatingMessages.length; i++) {
         floatingMessages[i].update();
         floatingMessages[i].draw();
 
-        if (floatingMessages[i].lifespan >= 50){
+        if (floatingMessages[i].lifespan >= 50) {
             floatingMessages.splice(i, 1);
             i--;
         }
@@ -70,29 +70,29 @@ function handleFloatingMessages(){
 }
 
 //Utilities
-function handleGameStatus(){
+function handleGameStatus() {
     scoreSlot.textContent = Resources.score;
     coinSlot.textContent = Resources.wallet + 'g';
 
-    if (Globals.gameOver){
-        ctx.fillStyle = 'black';        
+    if (Globals.gameOver) {
+        ctx.fillStyle = 'black';
         ctx.font = '80px Tibia';
         ctx.fillText('Game Over', 400, 250);
         ctx.fillText(`Score: ${Resources.score}`, 400, 350);
 
     }
 
-    if (Resources.score >= Globals.winningScore){
-        ctx.fillStyle = 'black';        
+    if (Resources.score >= Globals.winningScore) {
+        ctx.fillStyle = 'black';
         ctx.font = '80px Tibia';
         ctx.fillText('You won!', 400, 250);
         ctx.fillText(`Score: ${Resources.score}`, 400, 350);
     }
 }
 
-function animate(){
+function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     //Game
     handleGameGrid();
     handleDefenders(defenders, enemies, enemyPos, projectiles, frame, collision);
@@ -104,22 +104,22 @@ function animate(){
 
     //End game cycle
     frame++;
-    if (!Globals.gameOver && Resources.score < Globals.winningScore){
-            requestAnimationFrame(animate);
+    if (!Globals.gameOver && Resources.score < Globals.winningScore) {
+        requestAnimationFrame(animate);
     }
 }
 animate();
 
-function collision(first, second){
-    if (first.entity){
+function collision(first, second) {
+    if (first.entity) {
         first = first.entity;
     }
-    if (second.entity){
+    if (second.entity) {
         second = second.entity;
     }
-    
-    let collided = !( 
-        first.x > second.x + second.width || 
+
+    let collided = !(
+        first.x > second.x + second.width ||
         first.x + first.width < second.x ||
         first.y > second.y + second.height ||
         first.y + first.height < second.y
@@ -132,8 +132,8 @@ function collision(first, second){
 
 //Events
 //Add defender
-canvas.addEventListener('click', function(){
-    
+canvas.addEventListener('click', function () {
+
     const gridPositionX = mouse.x - (mouse.x % Globals.cellSize) + Globals.cellGap;
     const gridPositionY = mouse.y - (mouse.y % Globals.cellSize) + Globals.cellGap;
 
@@ -142,25 +142,25 @@ canvas.addEventListener('click', function(){
     // }
 
     let defenderCost = 100;
-    if (Resources.wallet >= defenderCost){
+    if (Resources.wallet >= defenderCost) {
         Resources.wallet -= defenderCost;
-        
-        defenders.push(new Defender(ctx, gridPositionX, gridPositionY, 
-                                    Globals.cellSize - Globals.cellGap * 2,
-                                    Globals.cellSize - Globals.cellGap * 2));
-    } else {        
+
+        defenders.push(new Defender(ctx, gridPositionX, gridPositionY,
+            Globals.cellSize - Globals.cellGap * 2,
+            Globals.cellSize - Globals.cellGap * 2));
+    } else {
         floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, 'Out of coins', 20, 'yellow'));
     }
 });
 
 //Mouse listener
-canvas.addEventListener('mousemove', function(e){
+canvas.addEventListener('mousemove', function (e) {
     mouse.update();
     mouse.x = e.x - mouse.canvasPosition.left;
     mouse.y = e.y - mouse.canvasPosition.top;
 });
 
-canvas.addEventListener('mouseleave', function(e){
+canvas.addEventListener('mouseleave', function (e) {
     mouse.update();
     mouse.x = undefined;
     mouse.y = undefined;

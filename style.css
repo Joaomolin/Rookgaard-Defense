@@ -135,7 +135,7 @@ body {
 @font-face {
     font-family: 'Tibia';
     src: url('./assets/Tibia.woff2') format('woff2'),
-         url('./assets/Tibia.woff') format('woff');
+        url('./assets/Tibia.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

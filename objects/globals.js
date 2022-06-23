@@ -4,7 +4,7 @@ export const Globals = {
     cellGap: 3,
     cellSize: 100,
     enemyInterval: 500
-} 
+}
 
 export const Resources = {
     wallet: 600,

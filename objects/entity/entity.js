@@ -1,5 +1,5 @@
-export class Entity{
-    constructor(x, y, width, height, health){
+export class Entity {
+    constructor(x, y, width, height, health) {
         this.x = x;
         this.y = y;
 

@@ -4,7 +4,7 @@ import { HealthBar } from "../healthBar.js";
 import { Entity } from "./entity.js";
 
 export class Enemy {
-    constructor(ctx, verticalPosition){
+    constructor(ctx, verticalPosition) {
 
         //Enemy
         this.ctx = ctx;
@@ -17,34 +17,34 @@ export class Enemy {
         // this.health = randomIntFromInterval(100, 200);
         // this.maxHealth = this.health;
 
-        this.entity = new Entity(canvas.width, verticalPosition ,Globals.cellSize - Globals.cellGap * 2, Globals.cellSize - Globals.cellGap * 2, randomIntFromInterval(100, 200));
+        this.entity = new Entity(canvas.width, verticalPosition, Globals.cellSize - Globals.cellGap * 2, Globals.cellSize - Globals.cellGap * 2, randomIntFromInterval(100, 200));
         this.healthBar = new HealthBar(this, this.entity);
         this.spawnSprite = new Sprite(6, true);
         this.sprite = new Sprite(randomIntFromInterval(100, 102));
     }
 
-    update(frame){
+    update(frame) {
         this.entity.x -= this.entity.movement;
-        
+
         this.sprite.update(frame);
         this.spawnSprite.update(frame);
     }
 
-    draw(){    
+    draw() {
         this.sprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
         this.spawnSprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
         this.healthBar.draw();
     }
 }
 
-export function handleEnemies(ctx, frame, enemies, enemyPos){
-    for(let i = 0; i < enemies.length; i++){
+export function handleEnemies(ctx, frame, enemies, enemyPos) {
+    for (let i = 0; i < enemies.length; i++) {
         enemies[i].update(frame);
         enemies[i].draw();
 
-        
-        if (enemies[i].entity.health <= 0){
-            const gainedResource = Math.floor(enemies[i].entity.maxHealth/4);
+
+        if (enemies[i].entity.health <= 0) {
+            const gainedResource = Math.floor(enemies[i].entity.maxHealth / 4);
             Resources.wallet += gainedResource;
             Resources.score += gainedResource;
             const findIndex = enemyPos.indexOf(enemies[i].entity.y);
@@ -56,15 +56,15 @@ export function handleEnemies(ctx, frame, enemies, enemyPos){
             return;
         }
 
-        if (enemies[i].entity.x < 0){
+        if (enemies[i].entity.x < 0) {
             Globals.gameOver = true;
         }
     }
 
     //Spawn enemy
-    if (frame % Globals.enemyInterval === 0){
+    if (frame % Globals.enemyInterval === 0) {
         let verticalPosition = Math.floor(Math.random() * 6) * Globals.cellSize + Globals.cellGap;
-        
+
         enemies.push(new Enemy(ctx, verticalPosition));
         enemyPos.push(verticalPosition);
         if (Globals.enemyInterval > 100) Globals.enemyInterval -= 40;

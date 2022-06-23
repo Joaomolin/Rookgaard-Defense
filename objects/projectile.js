@@ -2,7 +2,7 @@ import { Sprite } from "./sprite.js";
 import { Globals } from "./globals.js";
 
 export class Projectile {
-    constructor(ctx, x, y){
+    constructor(ctx, x, y) {
         this.ctx = ctx
         this.x = x;
         this.y = y;
@@ -13,28 +13,28 @@ export class Projectile {
 
         this.sprite = new Sprite(10);
     }
-    update(){
+    update() {
         this.x += this.speed;
     }
-    draw(){
+    draw() {
         this.ctx.fillStyle = 'black';
         this.ctx.beginPath();
         //this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
-        this.ctx.fill(); 
+        this.ctx.fill();
 
         this.sprite.draw(this.ctx, this.x - Globals.cellSize / 2, this.y - Globals.cellSize / 2, Globals.cellSize, Globals.cellSize);
     }
 }
 
-export function handleProjectiles(projectiles, enemies, collision){
-    for (let i = 0; i < projectiles.length; i++){
-        
+export function handleProjectiles(projectiles, enemies, collision) {
+    for (let i = 0; i < projectiles.length; i++) {
+
         projectiles[i].update();
         projectiles[i].draw();
 
-        for (let j = 0; j < enemies.length; j++){
-            if (projectiles[i] && enemies[j]){
-                if (collision(projectiles[i], enemies[j])){
+        for (let j = 0; j < enemies.length; j++) {
+            if (projectiles[i] && enemies[j]) {
+                if (collision(projectiles[i], enemies[j])) {
                     enemies[j].entity.health -= projectiles[i].power;
                     projectiles.splice(i, 1);
                     i--;
@@ -42,7 +42,7 @@ export function handleProjectiles(projectiles, enemies, collision){
             }
         }
 
-        if (projectiles[i] && projectiles[i].x > canvas.width){
+        if (projectiles[i] && projectiles[i].x > canvas.width) {
             projectiles.splice(i, 1);
             i--;
         }
