@@ -8,8 +8,8 @@ export class Projectile {
         this.y = y;
         this.width = 10;
         this.height = 10;
-        this.power = 20;
-        this.speed = 15;
+        this.power = 30;
+        this.speed = 20;
 
         this.sprite = new Sprite(10);
     }
@@ -17,10 +17,10 @@ export class Projectile {
         this.x += this.speed;
     }
     draw() {
-        this.ctx.fillStyle = 'black';
-        this.ctx.beginPath();
-        //this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
-        this.ctx.fill();
+        // this.ctx.fillStyle = 'black';
+        // this.ctx.beginPath();
+        // this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
+        // this.ctx.fill();
 
         this.sprite.draw(this.ctx, this.x - Globals.cellSize / 2, this.y - Globals.cellSize / 2);
     }

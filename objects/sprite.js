@@ -36,13 +36,13 @@ export class Sprite {
             this.spriteWidth,
             this.spriteHeight,
             x,
-            getAdjustedPos(y, this.spriteHeight),
+            getAdjustedHeight(y, this.spriteHeight),
             getAdjustedSize(this.spriteWidth),
             getAdjustedSize(this.spriteHeight));
     }
 
 }   
-function getAdjustedPos(y, height){
+function getAdjustedHeight(y, height){
     if (height > Globals.spriteSize) {
         let res = (getAdjustedSize(height) - Globals.cellSize) / 2;
         y -= res;

@@ -1,10 +1,10 @@
 .background {
-    background-image: url("./assets/GrayBackground.png");
+    background-image: url("./assets/backgrounds/GrayBackground.png");
 
 }
 
 .darkBackground {
-    background-image: url("./assets/DarkGrayBackground.png");
+    background-image: url("./assets/backgrounds/DarkGrayBackground.png");
 
 }
 
@@ -23,7 +23,7 @@
 }
 
 .header {
-    background-image: url("./assets/MidGrayBackground.png");
+    background-image: url("./assets/backgrounds/MidGrayBackground.png");
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -134,7 +134,7 @@ p {
 }
 
 .goldInventorySlot {
-    background-image: url('./assets/GoldBackground.png');
+    background-image: url('./assets/backgrounds/GoldBackground.png');
     border-top: 1px solid #ceb200;
     border-left: 1px solid #ceb200;
     border-right: 1px solid #b89830;
@@ -155,8 +155,8 @@ body {
 
 @font-face {
     font-family: 'Tibia';
-    src: url('./assets/Tibia.woff2') format('woff2'),
-        url('./assets/Tibia.woff') format('woff');
+    src: url('./assets/font/Tibia.woff2') format('woff2'),
+         url('./assets/font/Tibia.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
