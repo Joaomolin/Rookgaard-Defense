@@ -78,6 +78,7 @@ p {
 
 /* Canvas */
 .mainCanvas {
+    image-rendering: pixelated;
     /* min-width: 120vh;
     min-height: 60vh;
 
