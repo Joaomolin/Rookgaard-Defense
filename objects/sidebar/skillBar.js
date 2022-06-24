@@ -5,16 +5,19 @@ export class SkillBar {
         this.rightColumn = document.getElementById('rightColumn');
     }
 
+}
 
+export function createSkillBar(document) {
+    const skillBar = new SkillBar();
 
-    createSkillBar() {
-        this.skills.forEach(element => {
-            let div = document.createElement('p');
-            div.innerText = element;
-            this.leftColumn.appendChild(div);
-            let div2 = document.createElement('p');
-            div2.innerText = '0';
-            this.rightColumn.appendChild(div2);
-        });
-    }
+    skillBar.skills.forEach(element => {
+        let div = document.createElement('p');
+        div.innerText = element;
+        skillBar.leftColumn.appendChild(div);
+        let div2 = document.createElement('p');
+        div2.innerText = '0';
+        skillBar.rightColumn.appendChild(div2);
+    });
+    
+    return skillBar;
 }

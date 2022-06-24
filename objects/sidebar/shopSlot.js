@@ -1,27 +1,30 @@
 export class ShopSlot{
-    constructor(val){
-        
-        this.src = null;
-
-
-        //this.createSlot(val);
+    constructor(val){        
+        this.slot = createSlot(val);        
     }
     
-    createSlot(val){
-        switch(val){
-            case '1':
-                this.src = this.slot1.src;
-                break;
-        }
-    }
+}
 
+function createSlot(val){
+    switch(val){
+        case '1':
+            return slot.slot1;                
+        case '2':
+            return slot.slot2;
+        default:
+            return slot.default;
+    }
 }
 
 
-
 const slot = {
-    slot1: {
+    default: {
         src: "./assets/queijo.png",
-
+    },
+    slot1: {
+        src: "./assets/Arrow.png",
+    },
+    slot2: {
+        src: "./assets/favicon.png",
     },
 }

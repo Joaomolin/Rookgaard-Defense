@@ -6,14 +6,6 @@ import { Sprite } from "../sprite.js";
 export class Defender {
     constructor(ctx, x, y, width, height) {
         this.ctx = ctx;
-        // this.x = x;
-        // this.y = y;
-        // this.width = width;
-        // this.height = height;
-        // this.shooting = false;
-        // this.health = 100;
-        // this.maxHealth = this.health;
-        // this.timer = 0;
 
         this.entity = new Entity(x, y, width, height, 100);
         this.healthBar = new HealthBar(this, this.entity);
@@ -67,10 +59,17 @@ export function handleDefenders(defenders, enemies, enemyPos, projectiles, frame
                 defenders[i].entity.health -= 0.1;
             }
             if (defenders[i] && defenders[i].entity.health <= 0) {
+                
+                //Reset movement on row
+                for (let n = 0; n < enemies.length; n++) {
+                    if (enemies[n].entity.y === defenders[i].entity.y){
+                        enemies[n].entity.movement = enemies[n].entity.speed;
+                    }
+                }
+                
                 defenders.splice(i, 1);
                 i--;
-
-                enemies[j].entity.movement = enemies[j].entity.speed;
+                
             }
         }
     }

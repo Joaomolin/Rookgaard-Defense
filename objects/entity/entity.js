@@ -5,7 +5,7 @@ export class Entity {
 
         this.width = width;
         this.height = height;
-        this.speed = Math.random() * 0.3 + 3;
+        this.speed = Math.random() * 1 + 3;
         this.movement = this.speed;
         this.health = health;
         this.maxHealth = this.health;

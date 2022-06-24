@@ -7,8 +7,8 @@ import { Mouse } from "./objects/mouse.js"
 import { FloatingMessage } from "./objects/floatingMessage.js";
 import { createInventory } from "./objects/sidebar/inventory/inventory.js";
 import { Cell } from "./objects/cell.js";
-import { SkillBar } from "./objects/sidebar/skillBar.js";
-import { Shop } from "./objects/sidebar/shop.js";
+import { createSkillBar } from "./objects/sidebar/skillBar.js";
+import { createShop } from "./objects/sidebar/shop.js";
 
 
 const canvas = document.getElementById('canvas');
@@ -31,14 +31,11 @@ const defenders = [];
 const enemies = [];
 const enemyPos = [];
 //Start inventory
-const inventory = createInventory(document);
-
+createInventory(document);
 //Skill bar
-const skillBar = new SkillBar();
-skillBar.createSkillBar();
+createSkillBar(document);
 //Shop
-const shop = new Shop();
-shop.createShop();
+createShop(document);  
 
 
 //Board

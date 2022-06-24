@@ -8,14 +8,6 @@ export class Enemy {
 
         //Enemy
         this.ctx = ctx;
-        // this.x = canvas.width;
-        // this.y = verticalPosition;
-        // this.width = Globals.cellSize - Globals.cellGap * 2;
-        // this.height = Globals.cellSize - Globals.cellGap * 2;
-        // this.speed = Math.random() * 0.3 + 3;
-        // this.movement = this.speed;
-        // this.health = randomIntFromInterval(100, 200);
-        // this.maxHealth = this.health;
 
         this.entity = new Entity(canvas.width, verticalPosition, Globals.cellSize - Globals.cellGap * 2, Globals.cellSize - Globals.cellGap * 2, randomIntFromInterval(100, 200));
         this.healthBar = new HealthBar(this, this.entity);
@@ -50,8 +42,11 @@ export function handleEnemies(ctx, frame, enemies, enemyPos) {
             const findIndex = enemyPos.indexOf(enemies[i].entity.y);
             //const findIndex = enemies.filter(val => val.entity.health <= 0);
 
-            enemyPos.splice(findIndex, 1);
-            enemies.splice(i, 1);
+            const a = enemyPos.splice(findIndex, 1);
+            const b = enemies.splice(i, 1);
+            console.log(`Removed enemy ${a} === ${b}`);
+            console.log(a); 
+            console.log(b);
             i--;
             return;
         }
@@ -67,6 +62,6 @@ export function handleEnemies(ctx, frame, enemies, enemyPos) {
 
         enemies.push(new Enemy(ctx, verticalPosition));
         enemyPos.push(verticalPosition);
-        if (Globals.enemyInterval > 100) Globals.enemyInterval -= 40;
+        if (Globals.enemyInterval > 50) Globals.enemyInterval -= 25;
     }
 }

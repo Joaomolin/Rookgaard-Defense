@@ -8,6 +8,20 @@
 
 }
 
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    /* min-width: 120vh; */
+    /* min-height: 60vh; */
+
+    /* max-width: 180vh; */
+    /* max-height: 90vh; */
+
+    /* min-width: 11.2vw; */
+}
+
 .header {
     background-image: url("./assets/MidGrayBackground.png");
     font-size: 20px;
@@ -35,13 +49,13 @@
     margin: 3px;
 }
 
-.defendersTable {
+.shopTable {
     display: grid;
     gap: 1px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.defendersTable>* {
+.shopTable>* {
     margin: 3px;
 }
 
@@ -51,20 +65,8 @@
     height: fit-content;
 }
 
-.mainCanvas {
-    /* min-width: 120vh; */
-    /* min-height: 80vh; */
-
-    /* max-width: 135vh; */
-    /* max-height: 90vh; */
-
-    width: 1200px;
-    height: 600px;
-
-}
 
 .skillTable {
-    width: 49%;
     margin: 3px;
 }
 
@@ -74,30 +76,21 @@ p {
     font-size: 16px;
 }
 
-.tibiaBorder {
-    border-top: 2px solid #707070;
-    border-left: 2px solid #707070;
-    border-right: 2px solid #303030;
-    border-bottom: 2px solid #303030;
-}
+/* Canvas */
+.mainCanvas {
+    /* min-width: 120vh;
+    min-height: 60vh;
 
-.invTileBorder {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid #707070;
-    border-bottom: 1px solid #707070;
+    max-width: 180vh;
+    max-height: 90vh; */
 
+    /* width: 1200px;
+    height: 600px; */
+    aspect-ratio: 2/1;
 
 }
 
-.goldInventorySlot {
-    background-image: url('./assets/GoldBackground.png');
-    border-top: 1px solid #ceb200;
-    border-left: 1px solid #ceb200;
-    border-right: 1px solid #b89830;
-    border-bottom: 1px solid #b89830;
-}
-
+/* Inventory Tiles */
 .invTileSize {
     /* min 8vh */
     min-width: 5vh;
@@ -122,11 +115,38 @@ p {
     height: 21px;
 }
 
+/* Border */
+.tibiaBorder {
+    border-top: 2px solid #707070;
+    border-left: 2px solid #707070;
+    border-right: 2px solid #303030;
+    border-bottom: 2px solid #303030;
+}
+
+.invTileBorder {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid #707070;
+    border-bottom: 1px solid #707070;
+
+
+}
+
+.goldInventorySlot {
+    background-image: url('./assets/GoldBackground.png');
+    border-top: 1px solid #ceb200;
+    border-left: 1px solid #ceb200;
+    border-right: 1px solid #b89830;
+    border-bottom: 1px solid #b89830;
+}
+
+/*  */
 canvas {
     image-rendering: pixelated;
 }
 
 body {
+    margin: 0;
     display: flex;
     image-rendering: pixelated;
     font-family: 'Tibia';
