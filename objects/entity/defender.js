@@ -10,7 +10,7 @@ export class Defender {
         this.entity = new Entity(x, y, width, height, 100);
         this.healthBar = new HealthBar(this, this.entity);
         this.spawnSprite = new Sprite(6, true);
-        this.sprite = new Sprite(200);
+        this.sprite = new Sprite(201);
     }
 
     draw() {

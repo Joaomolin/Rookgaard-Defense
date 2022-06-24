@@ -17,6 +17,7 @@ export class HealthBar {
 
 
         this.entity.ctx.lineWidth = 2;
+        this.entity.ctx.strokeStyle = 'black';
         this.entity.ctx.fillStyle = lifePercentage > 30 ? '#309030' : 'red';
 
         this.entity.ctx.fillRect(this.entityStats.x + this.gap - 3, this.entityStats.y - 2, lifePercentage, 5);

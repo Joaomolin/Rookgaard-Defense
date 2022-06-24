@@ -7,11 +7,12 @@ export class Sprite {
         this.maxFrame = 0;
         this.spriteWidth = 34;
         this.spriteHeight = 34;
-        this.spriteSpeed = 20 + addRandomSpeed();
+        this.spriteSpeed = addRandomNumberTo(20);
         this.type = getSprite(spriteId, this);
         this.isSpawn = isSpawn;
 
     }
+
     update(frame) {
         if (frame % this.spriteSpeed === 0) {
             if (this.frameX < this.maxFrame) {
@@ -41,7 +42,12 @@ export class Sprite {
 
 
 
-function addRandomSpeed() {
+function addRandomNumberTo(n){
+    return n + getRandomSpeed();
+}
+
+
+function getRandomSpeed() {
     return Math.floor(Math.random() * 5);
 }
 
@@ -67,36 +73,47 @@ function getSprite(i, self) {
             sprite.src = "./assets/Arrow.png";
             break;
 
-        case 100:
-            sprite.src = "./assets/OrcInimigo.png";
-            self.maxFrame = 1;
-            break;
+        
         case 101:
-            sprite.src = "./assets/cobra.png";
-            self.maxFrame = 1;
+            sprite.src = "./assets/enemies/Orc1.png";
+            self.spriteSpeed = addRandomNumberTo(10);
+            self.maxFrame = 7;
             break;
         case 102:
-            sprite.src = "./assets/SlimeInimigo.png";
-            self.spriteWidth = 66;
-            self.spriteHeight = 66;
+            sprite.src = "./assets/enemies/Orc2.png";
+            self.spriteSpeed = addRandomNumberTo(10);
             self.maxFrame = 7;
-            self.spriteSpeed = 5 + addRandomSpeed();
             break;
+        case 103:
+            sprite.src = "./assets/enemies/Orc3.png";
+            self.spriteSpeed = addRandomNumberTo(12);
+            self.maxFrame = 7;
+            break;
+            
 
-        case 200:
-            sprite.src = "./assets/MinoArcher.png";
-            self.maxFrame = 1;
-            self.spriteSpeed = 50 + addRandomSpeed();
+        case 201:
+            sprite.src = "./assets/allies/Mino1.png";
+            self.spriteSpeed = addRandomNumberTo(40);
+            self.maxFrame = 7;
+            break;
+        case 202:
+            sprite.src = "./assets/allies/Mino2.png";
+            self.spriteSpeed = addRandomNumberTo(40);
+            self.maxFrame = 7;
+            break;
+        case 203:
+            sprite.src = "./assets/allies/Mino3.png";
+            self.spriteSpeed = addRandomNumberTo(40);
+            self.maxFrame = 7;
             break;
 
         default:
-            sprite.src = "./assets/OrcInimigo.png";
-            self.maxFrame = 1;
-            break;
+            sprite.src = "./assets/Arrow.png";
     }
 
     return sprite;
 }
+
 
 
 
