@@ -21,7 +21,7 @@ export class FloatingMessage {
     draw() {
         this.ctx.globalAlpha = this.opacity;
         this.ctx.fillStyle = this.color;
-        this.ctx.font = this.size + 'px Roboto Mono';
+        this.ctx.font = this.size + 'px Tibia';
         this.ctx.fillText(this.value, this.x, this.y);
 
         //reset opacity

@@ -1,4 +1,7 @@
+import { Globals } from "./globals.js";
+
 export class Sprite {
+    
     constructor(spriteId, isSpawn) {
 
         this.frameX = 0;
@@ -13,6 +16,7 @@ export class Sprite {
 
     }
 
+
     update(frame) {
         if (frame % this.spriteSpeed === 0) {
             if (this.frameX < this.maxFrame) {
@@ -25,22 +29,30 @@ export class Sprite {
         }
     }
 
-    draw(ctx, x, y, width, height) {
+    draw(ctx, x, y) {
         ctx.drawImage(this.type,
             this.frameX * this.spriteWidth,
             this.frameY * this.spriteHeight,
             this.spriteWidth,
             this.spriteHeight,
             x,
-            y,
-            width,
-            height);
+            getAdjustedPos(y, this.spriteHeight),
+            getAdjustedSize(this.spriteWidth),
+            getAdjustedSize(this.spriteHeight));
     }
 
-
+}   
+function getAdjustedPos(y, height){
+    if (height > Globals.spriteSize) {
+        let res = (getAdjustedSize(height) - Globals.cellSize) / 2;
+        y -= res;
+    }
+    return y;
 }
 
-
+function getAdjustedSize(x){
+    return Math.floor(x * Globals.cellSize / Globals.spriteSize);
+}
 
 function addRandomNumberTo(n){
     return n + getRandomSpeed();
@@ -55,12 +67,10 @@ function getSprite(i, self) {
     const sprite = new Image();
     switch (i) {
         case 2:
-            //sprite.src = "./assets/Ground1.png";
-            sprite.src = "https://www.tibiawiki.com.br/images/2/2d/Terracotta.gif";
+            sprite.src = "./assets/Ground1.png";
+            // sprite.src = "https://www.tibiawiki.com.br/images/2/2d/Terracotta.gif";
             break;
-        case 3:
-            sprite.src = "./assets/bghorizontal.png";
-            break;
+
         case 4:
             sprite.src = "./assets/queijo.png";
             break;
@@ -87,6 +97,32 @@ function getSprite(i, self) {
         case 103:
             sprite.src = "./assets/enemies/Orc3.png";
             self.spriteSpeed = addRandomNumberTo(12);
+            self.maxFrame = 7;
+            break;
+        case 104:
+            sprite.src = "./assets/enemies/Skeleton1.png";
+            self.spriteSpeed = addRandomNumberTo(10);
+            self.maxFrame = 7;
+            break;
+        case 105:
+            sprite.src = "./assets/enemies/Skeleton2.png";
+            self.spriteSpeed = addRandomNumberTo(10);
+            self.spriteWidth = 36;
+            self.spriteHeight = 42;
+            self.maxFrame = 7;
+            break;
+        case 106:
+            sprite.src = "./assets/enemies/Dragon1.png";
+            self.spriteSpeed = addRandomNumberTo(4);
+            self.spriteWidth = 64;
+            self.spriteHeight = 64;
+            self.maxFrame = 7;
+            break;
+        case 107:
+            sprite.src = "./assets/enemies/Dragon2.png";
+            self.spriteSpeed = addRandomNumberTo(4);
+            self.spriteWidth = 64;
+            self.spriteHeight = 64;
             self.maxFrame = 7;
             break;
             

@@ -146,7 +146,7 @@ canvas.addEventListener('click', function () {
             Globals.cellSize - Globals.cellGap * 2,
             Globals.cellSize - Globals.cellGap * 2));
     } else {
-        floatingMessages.push(new FloatingMessage(ctx, mouse.x, mouse.y, 'Out of coins', 20, 'yellow'));
+        floatingMessages.push(new FloatingMessage(ctx, mouse.x + 10, mouse.y - 10, 'Out of coins', 30, 'yellow'));
     }
 });
 

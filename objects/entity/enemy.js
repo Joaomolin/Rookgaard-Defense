@@ -12,7 +12,7 @@ export class Enemy {
         this.entity = new Entity(canvas.width, verticalPosition, Globals.cellSize - Globals.cellGap * 2, Globals.cellSize - Globals.cellGap * 2, randomIntFromInterval(100, 200));
         this.healthBar = new HealthBar(this, this.entity);
         this.spawnSprite = new Sprite(6, true);
-        this.sprite = new Sprite(103);//(randomIntFromInterval(100, 102));
+        this.sprite = new Sprite(107);//(randomIntFromInterval(100, 102));
     }
 
     update(frame) {
@@ -25,8 +25,8 @@ export class Enemy {
     draw() {
 
 
-        this.sprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
-        this.spawnSprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
+        this.sprite.draw(this.ctx, this.entity.x, this.entity.y);
+        this.spawnSprite.draw(this.ctx, this.entity.x, this.entity.y);
 
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'black';

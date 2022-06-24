@@ -3,7 +3,8 @@ export const Globals = {
     winningScore: 5000,
     cellGap: 3,
     cellSize: 100,
-    enemyInterval: 500
+    enemyInterval: 500,
+    spriteSize: 34
 }
 
 export const Resources = {

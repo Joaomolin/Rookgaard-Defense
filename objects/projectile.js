@@ -22,7 +22,7 @@ export class Projectile {
         //this.ctx.arc(this.x, this.y, this.width, 0, Math.PI * 2);
         this.ctx.fill();
 
-        this.sprite.draw(this.ctx, this.x - Globals.cellSize / 2, this.y - Globals.cellSize / 2, Globals.cellSize, Globals.cellSize);
+        this.sprite.draw(this.ctx, this.x - Globals.cellSize / 2, this.y - Globals.cellSize / 2);
     }
 }
 

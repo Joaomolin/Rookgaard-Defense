@@ -7,15 +7,15 @@ export class Defender {
     constructor(ctx, x, y, width, height) {
         this.ctx = ctx;
 
-        this.entity = new Entity(x, y, width, height, 100);
+        this.entity = new Entity(x, y, width, height, 100, false);
         this.healthBar = new HealthBar(this, this.entity);
         this.spawnSprite = new Sprite(6, true);
-        this.sprite = new Sprite(201);
+        this.sprite = new Sprite(203);
     }
 
     draw() {
-        this.sprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
-        this.spawnSprite.draw(this.ctx, this.entity.x, this.entity.y, this.entity.width, this.entity.height);
+        this.sprite.draw(this.ctx, this.entity.x, this.entity.y);
+        this.spawnSprite.draw(this.ctx, this.entity.x, this.entity.y);
         this.healthBar.draw();
     }
 
