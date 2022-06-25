@@ -1,5 +1,6 @@
 import { Sprite } from "./sprite.js";
 import { Globals } from "./globals.js";
+import assets from "../assets/assets.json" assert {type: 'json'};
 
 export class Projectile {
     constructor(ctx, x, y) {
@@ -11,7 +12,7 @@ export class Projectile {
         this.power = 30;
         this.speed = 20;
 
-        this.sprite = new Sprite(10);
+        this.sprite = new Sprite(assets.Arrow);
     }
     update() {
         this.x += this.speed;

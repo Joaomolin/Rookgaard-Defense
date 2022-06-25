@@ -3,6 +3,9 @@ import { Sprite } from "../sprite.js";
 import { HealthBar } from "../healthBar.js";
 import { Entity } from "./entity.js";
 
+import assets from "../../assets/assets.json" assert {type: 'json'};
+import enemies from "../../assets/enemies/enemies.json" assert {type: 'json'};
+
 export class Enemy {
     constructor(ctx, verticalPosition) {
 
@@ -11,8 +14,8 @@ export class Enemy {
 
         this.entity = new Entity(canvas.width, verticalPosition, Globals.cellSize - Globals.cellGap * 2, Globals.cellSize - Globals.cellGap * 2, randomIntFromInterval(100, 200));
         this.healthBar = new HealthBar(this, this.entity);
-        this.spawnSprite = new Sprite(6, true);
-        this.sprite = new Sprite(107);//(randomIntFromInterval(100, 102));
+        this.spawnSprite = new Sprite(assets.Teleport);
+        this.sprite = new Sprite(enemies.Dragon2);//(randomIntFromInterval(100, 102));
     }
 
     update(frame) {

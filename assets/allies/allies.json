@@ -1,0 +1,39 @@
+{
+    "Minotaur1": {
+        "name": "Minotaur Archer",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 10,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/allies/Mino1.png"
+    },
+    "Minotaur2": {
+        "name": "Minotaur Mage",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 10,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/allies/Mino2.png"
+    },
+    "Minotaur3": {
+        "name": "Minotaur Berserk",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 10,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/allies/Mino3.png"
+    }   
+
+}

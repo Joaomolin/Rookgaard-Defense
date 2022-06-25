@@ -1,5 +1,6 @@
 import { Globals } from "./globals.js";
 import { Sprite } from "./sprite.js";
+import assets from "../assets/assets.json" assert {type: 'json'};
 
 export class Cell {
     constructor(ctx, mouse, x, y) {
@@ -10,7 +11,7 @@ export class Cell {
         this.width = Globals.cellSize;
         this.height = Globals.cellSize;
 
-        this.sprite = new Sprite(2);
+        this.sprite = new Sprite(assets.Ground);
     }
 
     draw(collision) {

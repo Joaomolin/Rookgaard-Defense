@@ -3,14 +3,17 @@ import { HealthBar } from "../healthBar.js";
 import { Projectile } from "../projectile.js";
 import { Sprite } from "../sprite.js";
 
+import assets from "../../assets/assets.json" assert {type: 'json'};
+import allies from "../../assets/allies/allies.json" assert {type: 'json'};
+
 export class Defender {
     constructor(ctx, x, y, width, height) {
         this.ctx = ctx;
 
         this.entity = new Entity(x, y, width, height, 100, false);
         this.healthBar = new HealthBar(this, this.entity);
-        this.spawnSprite = new Sprite(6, true);
-        this.sprite = new Sprite(203);
+        this.spawnSprite = new Sprite(assets.Teleport);
+        this.sprite = new Sprite(allies.Minotaur3);
     }
 
     draw() {

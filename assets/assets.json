@@ -1,0 +1,38 @@
+{
+    "Teleport": {
+        "name": "Teleport",
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 9,
+        "frameSpeed": 4,
+        "src": "./assets/teleport.png"
+    },
+    "Ground": {
+        "name": "Ground",
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 0,
+        "frameSpeed": 0,
+        "src": "./assets/Ground1.png"
+    },
+    "Cheese": {
+        "name": "Cheese",
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 0,
+        "frameSpeed": 0,
+        "src": "./assets/queijo.png"
+    },
+    "Arrow": {
+        "name": "Arrow",
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 0,
+        "frameSpeed": 0,
+        "src": "./assets/Arrow.png"
+    }
+}

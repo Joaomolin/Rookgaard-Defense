@@ -1,0 +1,99 @@
+{
+    "Orc1": {
+        "name": "Orc",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 15,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Orc1.png"
+    },
+    "Orc2": {
+        "name": "Orc Berserker",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 15,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Orc2.png"
+    },
+    "Orc3": {
+        "name": "Orc Spearman",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 15,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Orc3.png"
+    },
+    "Skeleton1": {
+        "name": "Skeleton",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 15,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Skeleton1.png"
+    },
+    "Skeleton2": {
+        "name": "Skeleton Warrior",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 15,
+
+        "spriteWidth": 36,
+        "spriteHeight": 42,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Skeleton2.png"
+    },
+    "Dragon1": {
+        "name": "Dragon",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 20,
+
+        "spriteWidth": 64,
+        "spriteHeight": 64,
+        "frames": 8,
+        "frameSpeed": 4,
+        "src": "./assets/enemies/Dragon1.png"
+    },
+    "Dragon2": {
+        "name": "Dragon Lord",
+        "maxHealth": 200,
+        "damage": 15,
+        "speed": 20,
+
+        "spriteWidth": 64,
+        "spriteHeight": 64,
+        "frames": 8,
+        "frameSpeed": 4,
+        "src": "./assets/enemies/Dragon2.png"
+    },
+    "Example": {
+        "name": "Example",
+        "maxHealth": 100,
+        "damage": 10,
+        "speed": 10,
+
+        "spriteWidth": 34,
+        "spriteHeight": 34,
+        "frames": 8,
+        "frameSpeed": 10,
+        "src": "./assets/enemies/Dragon1.png"
+    }
+
+}
