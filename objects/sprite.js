@@ -4,7 +4,6 @@ export class Sprite {
     
     constructor(spriteInfo) {
 
-        this.isSpawn = spriteInfo.name == "Teleport";
         this.frameX = 0;
         this.frameY = 0;
         this.minFrame = 0;
@@ -12,11 +11,13 @@ export class Sprite {
         this.spriteWidth = spriteInfo.spriteWidth;
         this.spriteHeight = spriteInfo.spriteHeight;
         this.frameSpeed = spriteInfo.frameSpeed;
+        
         const sprite = new Image();
         sprite.src = spriteInfo.src;
         this.type = sprite;
 
-        this.info = spriteInfo;
+        // this.info = spriteInfo;
+        this.isSpawn = spriteInfo.name == "Teleport";
 
     }
 
